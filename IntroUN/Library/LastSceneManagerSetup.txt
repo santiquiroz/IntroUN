@@ -1,1 +1,4 @@
-sceneSetups: []
+sceneSetups:
+- path: Assets/1-Escenas/Minijuegos/Parejas de cartas/ParjeaCartas.unity
+  isLoaded: 1
+  isActive: 1

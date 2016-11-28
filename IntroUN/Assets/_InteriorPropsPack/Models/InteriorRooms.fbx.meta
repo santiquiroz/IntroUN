@@ -1,0 +1,153 @@
+fileFormatVersion: 2
+guid: e35debbe3f868364a8e4da5fc480f304
+timeCreated: 1461287108
+licenseType: Store
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Hall.0
+    100002: Hall.1
+    100004: Hall.2
+    100006: Hall.3
+    100008: Hall.4
+    100010: HallCorner
+    100012: //RootNode
+    100014: Room.1
+    100016: Room.2
+    100018: Room.3
+    100020: Room.4
+    100022: Room.5
+    100024: Door.1
+    100026: Door.2
+    100028: Door.3
+    100030: Door.Knob
+    100032: Room.0
+    400000: Hall.0
+    400002: Hall.1
+    400004: Hall.2
+    400006: Hall.3
+    400008: Hall.4
+    400010: HallCorner
+    400012: //RootNode
+    400014: Room.1
+    400016: Room.2
+    400018: Room.3
+    400020: Room.4
+    400022: Room.5
+    400024: Door.1
+    400026: Door.2
+    400028: Door.3
+    400030: Door.Knob
+    400032: Room.0
+    2300000: Hall.0
+    2300002: Hall.1
+    2300004: Hall.2
+    2300006: Hall.3
+    2300008: Hall.4
+    2300010: HallCorner
+    2300012: Room.1
+    2300014: Room.2
+    2300016: Room.3
+    2300018: Room.4
+    2300020: Room.5
+    2300022: Door.1
+    2300024: Door.2
+    2300026: Door.3
+    2300028: Door.Knob
+    2300030: Room.0
+    3300000: Hall.0
+    3300002: Hall.1
+    3300004: Hall.2
+    3300006: Hall.3
+    3300008: Hall.4
+    3300010: HallCorner
+    3300012: Room.1
+    3300014: Room.2
+    3300016: Room.3
+    3300018: Room.4
+    3300020: Room.5
+    3300022: Door.1
+    3300024: Door.2
+    3300026: Door.3
+    3300028: Door.Knob
+    3300030: Room.0
+    4300000: Room.5
+    4300002: Room.4
+    4300004: Room.3
+    4300006: Room.2
+    4300008: Room.1
+    4300010: HallCorner
+    4300012: Hall.4
+    4300014: Hall.3
+    4300016: Hall.2
+    4300018: Hall.1
+    4300020: Hall.0
+    4300022: Door.3
+    4300024: Door.2
+    4300026: Door.1
+    4300028: Door.Knob
+    4300030: Room.0
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,173 @@
+fileFormatVersion: 2
+guid: e1c08a3799e6adb478a7cfb950219462
+timeCreated: 1480287631
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Armature
+    100002: //RootNode
+    100004: Dummy-LHandWeapon
+    100006: Dummy-RHandWeapon
+    100008: Knight
+    100010: Rig
+    100012: RigHead
+    100014: RigHeadGizmo
+    100016: RigLArm1
+    100018: RigLArm1Gizmo
+    100020: RigLArm2
+    100022: RigLArm2Gizmo
+    100024: RigLArmPalm
+    100026: RigLArmPalmGizmo
+    100028: RigLLeg1
+    100030: RigLLeg2
+    100032: RigLLegAnkle
+    100034: RigLLegFoot1
+    100036: RigNeck
+    100038: RigPelvis
+    100040: RigPelvisGizmo
+    100042: RigRArm1
+    100044: RigRArm1Gizmo
+    100046: RigRArm2
+    100048: RigRArm2Gizmo
+    100050: RigRArmPalm
+    100052: RigRArmPalmGizmo
+    100054: RigRibcage
+    100056: RigRibcageGizmo
+    100058: RigRLeg1
+    100060: RigRLeg2
+    100062: RigRLegAnkle
+    100064: RigRLegFoot1
+    100066: RigRLegPlatform
+    100068: RigSpine1
+    100070: RigSpine2
+    100072: RigTail1
+    100074: RigTail1Gizmo
+    100076: RigTail2
+    100078: RigTail2Gizmo
+    100080: RigTail3
+    100082: RigTail3Gizmo
+    100084: RigTail4
+    100086: RigTail4Gizmo
+    100088: Shield
+    100090: Sword
+    400000: Armature
+    400002: //RootNode
+    400004: Dummy-LHandWeapon
+    400006: Dummy-RHandWeapon
+    400008: Knight
+    400010: Rig
+    400012: RigHead
+    400014: RigHeadGizmo
+    400016: RigLArm1
+    400018: RigLArm1Gizmo
+    400020: RigLArm2
+    400022: RigLArm2Gizmo
+    400024: RigLArmPalm
+    400026: RigLArmPalmGizmo
+    400028: RigLLeg1
+    400030: RigLLeg2
+    400032: RigLLegAnkle
+    400034: RigLLegFoot1
+    400036: RigNeck
+    400038: RigPelvis
+    400040: RigPelvisGizmo
+    400042: RigRArm1
+    400044: RigRArm1Gizmo
+    400046: RigRArm2
+    400048: RigRArm2Gizmo
+    400050: RigRArmPalm
+    400052: RigRArmPalmGizmo
+    400054: RigRibcage
+    400056: RigRibcageGizmo
+    400058: RigRLeg1
+    400060: RigRLeg2
+    400062: RigRLegAnkle
+    400064: RigRLegFoot1
+    400066: RigRLegPlatform
+    400068: RigSpine1
+    400070: RigSpine2
+    400072: RigTail1
+    400074: RigTail1Gizmo
+    400076: RigTail2
+    400078: RigTail2Gizmo
+    400080: RigTail3
+    400082: RigTail3Gizmo
+    400084: RigTail4
+    400086: RigTail4Gizmo
+    400088: Shield
+    400090: Sword
+    2300000: Shield
+    2300002: Sword
+    3300000: Shield
+    3300002: Sword
+    4300000: Sword
+    4300002: Shield
+    4300004: Knight
+    7400000: Default Take
+    9500000: //RootNode
+    13700000: Knight
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
