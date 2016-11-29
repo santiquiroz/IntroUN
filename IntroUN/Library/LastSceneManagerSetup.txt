@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/1-Escenas/Minijuegos/Parejas de cartas/ParjeaCartas.unity
+- path: Assets/1-Escenas/Campus/Campus.unity
   isLoaded: 1
   isActive: 1
