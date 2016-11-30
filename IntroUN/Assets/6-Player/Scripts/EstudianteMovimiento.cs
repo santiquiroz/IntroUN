@@ -152,7 +152,7 @@ public class EstudianteMovimiento : MonoBehaviour {
 	void cambiarScena(){
 		
 		if (edificio.gameObject.layer == LayerMask.NameToLayer ("Tienda")) {
-			edificio.GetComponent<Comida>().comprarAlimentos();
+            SceneManager.LoadScene(2);
 		} else {
 			GameControl.control.indexUtimoEnemigo = -1;
 			GameControl.control.Save ();
