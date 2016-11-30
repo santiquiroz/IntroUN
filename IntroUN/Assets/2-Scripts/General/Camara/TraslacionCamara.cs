@@ -41,9 +41,9 @@ public class TraslacionCamara : MonoBehaviour {
 
 		//} else if(Input.GetTouch (0).phase == TouchPhase.Ended){
 			//player.GetComponent<EstudianteMovimiento> ().setTraslacion (false);
-		}else if(Input.touchCount == 0){
+		}//else if(Input.touchCount == 0){
 			transform.position = player.transform.position + offset;
-		}
+		//}
 
 	}
 

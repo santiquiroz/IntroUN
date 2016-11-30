@@ -64,7 +64,7 @@ public class Zoom : MonoBehaviour {
                 GetComponent<Camera>().fieldOfView = Mathf.Clamp(GetComponent<Camera>().fieldOfView, minimo, maximo);
             }
 
-			gameObject.GetComponent<TraslacionCamara> ().setOffset (transform.position);
+			//gameObject.GetComponent<TraslacionCamara> ().setOffset (transform.position);
         }
     }
 }
