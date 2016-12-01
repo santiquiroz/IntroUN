@@ -27,6 +27,8 @@ public class EstudianteMovimiento : MonoBehaviour {
 	private bool cambioEscena;
 
 	private GameObject edificio;
+	private GameObject edificioTemp;
+
 
 	//==================================================================================================
 
@@ -76,11 +78,24 @@ public class EstudianteMovimiento : MonoBehaviour {
 							cambioEscena = false;
 							edificio.GetComponent<EdificioControl>().activarPointer (false);
 						}
-					} else {
+					} else{
 						edificio = hit.transform.gameObject;
-						edificio.GetComponent<EdificioControl>().asignarCategoria();
-						if (cambioEscena)
+						print (edificio.name);
+						//--------------------------------------------
+						if(edificio.name != "Crital_Estres")
+							edificio.GetComponent<EdificioControl>().asignarCategoria();
+						else
+							edificio.GetComponent<EdificioControl>().activarPointer (true);
+						//--------------------------------------------
+
+						if (cambioEscena && enDestino () && edificio.name == edificioTemp.name)
 							cambiarScena ();	//LLamar a futuro script de cambio de escena
+						else if(edificioTemp != null && edificio.name != edificioTemp.name){
+							edificioTemp.GetComponent<EdificioControl>().activarPointer (false);
+							edificioTemp = edificio;
+						}else{
+							edificioTemp = edificio;
+						}
 						cambioEscena = true;
 						Mover (hit.transform.GetChild (0).transform.position, false);
 
@@ -107,6 +122,7 @@ public class EstudianteMovimiento : MonoBehaviour {
 	*/
 	public void Mover(Vector3 punto, bool marcarPointer){
 		//agent.Warp(transform.position);
+		print(punto);
 		agent.destination = punto;
 		destino = punto;
 		if (marcarPointer) {
@@ -153,6 +169,8 @@ public class EstudianteMovimiento : MonoBehaviour {
 		
 		if (edificio.gameObject.layer == LayerMask.NameToLayer ("Tienda")) {
             SceneManager.LoadScene(2);
+		}else if(edificio.name == "Crital_Estres"){
+			gameObject.GetComponent<EstudianteEstadisticas> ().restaurarEestres ();
 		} else {
 			GameControl.control.indexUtimoEnemigo = -1;
 			GameControl.control.Save ();

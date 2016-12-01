@@ -216,7 +216,7 @@ public class EstudianteEstadisticas : MonoBehaviour {
 	 */
 	public void restaurarEestres(){
 		GameControl.control.estresActual = GameControl.control.estresTotal;
-		estresContent.fillAmount = 0;
+		estresContent.fillAmount = 1;
 	}
 
 	//==================================================================================================

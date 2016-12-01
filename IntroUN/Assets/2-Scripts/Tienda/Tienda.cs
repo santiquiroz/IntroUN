@@ -79,9 +79,8 @@ public class Tienda : MonoBehaviour {
             energiaObtenida += 10;
         }
 
-        //GameObject.FindWithTag("Player").GetComponent<EstudianteEstadisticas>().restaurarEnergia(energiaObtenida);
-        // Acá debe retornar a la escena campus
-
+        //Recupera energia
+		restaurarEnergia(energiaObtenida);
     }
 
     public void pasarPagina()
@@ -95,5 +94,22 @@ public class Tienda : MonoBehaviour {
         siguientePagina.gameObject.SetActive(true);
         indicePaginaActual = indiceSiguientePagina;
     }
+
+
+	//Recordar quitar cuando se Arregle Script EstudianteEstaditicas
+	public void restaurarEnergia(float dif){
+		float energia = GameControl.control.energiaActual + dif;
+		float energiaT = GameControl.control.energiaTotal;
+
+		if (energia > energiaT) {
+			energia = energiaT;
+		}
+
+		GameControl.control.energiaActual = energia;
+
+		// Acá debe retornar a la escena campus
+		SceneManager.LoadScene (0);
+	}
+		
 
 }

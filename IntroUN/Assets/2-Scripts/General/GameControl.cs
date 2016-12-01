@@ -94,6 +94,7 @@ public class GameControl : MonoBehaviour {
 		defaultValues ();
 		Load ();
 
+
 	}
 
 	void defaultValues(){
