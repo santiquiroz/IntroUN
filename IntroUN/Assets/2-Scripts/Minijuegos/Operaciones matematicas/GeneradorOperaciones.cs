@@ -39,6 +39,9 @@ public class GeneradorOperaciones : MonoBehaviour {
 	 *	Inicialización de las variables
 	*/
 	void Start () {
+
+		controladorPersonajes = GameObject.Find ("MiniJuego").GetComponent<MinijuegoGeneral> ().controladorPersonajes;
+
 		aciertos = 0;
 		errores = 0;
 		tamañoMaximo = 20;
