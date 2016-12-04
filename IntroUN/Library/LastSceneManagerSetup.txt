@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/1-Escenas/Campus/Campus.unity
+- path: Assets/1-Escenas/Minijuegos/Palabras/Palabras.unity
   isLoaded: 1
   isActive: 1
