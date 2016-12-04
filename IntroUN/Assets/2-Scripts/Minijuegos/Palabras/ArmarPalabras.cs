@@ -14,15 +14,21 @@ public class ArmarPalabras : MonoBehaviour {
     public TextAsset archivoPalabras;
     public Text palabraIngresada;
     private Dictionary<string, int> palabras;
+    private Dictionary<string, int> palabrasIngresadas;
+    private Dictionary<string, int> letrasPresentadas;
     private string[] letras;
+    private int cantidadCasillas = 12; //Cambiando este valor se puede graduar la dificultad
+    private int cantidadLetras = 27; //Cambiando este valor se puede graduar la dificultad
 
 
 	// Use this for initialization
 	void Start () {
 
         palabras = new Dictionary<string,int>();
-        letras = new string[] { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", 
-                                "L", "M", "N", "Ñ", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"};
+        palabrasIngresadas = new Dictionary<string, int>();
+        letrasPresentadas = new Dictionary<string, int>();
+        letras = new string[] { "E", "A", "O", "S", "R", "N", "I", "D", "L", "C", "T", 
+                                "U", "M", "P", "B", "G", "V", "Y", "Q", "H", "F", "Z", "J", "Ñ", "X", "W", "K"};
         string[] lineas = archivoPalabras.text.Split('\n');
         foreach (string linea in lineas)
         {
@@ -45,15 +51,26 @@ public class ArmarPalabras : MonoBehaviour {
         string letraSeleccionada = EventSystem.current.currentSelectedGameObject.GetComponent<Text>().text;
         palabraIngresada.text = palabraIngresada.text + letraSeleccionada;
 
+
     }
 
     public void verificarPalabra()
     {
         string palabra = palabraIngresada.text.ToLower();
-        if (palabras.ContainsKey(palabra)) Debug.Log("Si");
-        else Debug.Log("No");
 
-        palabraIngresada.text = "";
+        if (palabrasIngresadas.ContainsKey(palabra)) palabraIngresada.text = "";
+
+        else if (palabras.ContainsKey(palabra))
+        {
+            controladorPersonajes.Atacar();
+            palabrasIngresadas[palabra] = 1;
+            palabraIngresada.text = "";
+        }
+        else
+        {
+            controladorPersonajes.Fallar();
+            palabraIngresada.text = "";
+        }
         
     }
 
@@ -70,9 +87,17 @@ public class ArmarPalabras : MonoBehaviour {
 
     void generarLetras()
     {
-        for (int i = 0; i < 10; i++)
+        string letra = "";
+        letrasPresentadas.Clear();
+        for (int i = 0; i < cantidadCasillas; i++)
         {
-            this.transform.GetChild(i).transform.GetComponent<Text>().text = letras[UnityEngine.Random.Range(0, 27)];
+            do
+            {
+                letra = letras[UnityEngine.Random.Range(0, cantidadLetras)];
+            } while (letrasPresentadas.ContainsKey(letra));
+
+            this.transform.GetChild(i).transform.GetComponent<Text>().text = letra;
+            letrasPresentadas[letra] = 1;
 
         }
     }
