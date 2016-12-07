@@ -3,8 +3,6 @@ la
 que
 el
 en
-y
-a
 los
 se
 del
@@ -21,7 +19,6 @@ al
 lo
 como
 mas
-o
 pero
 sus
 le
@@ -72,7 +69,6 @@ mismo
 ese
 ahora
 cada
-e
 vida
 otro
 despues
@@ -350,7 +346,6 @@ empresa
 puesto
 ahi
 propia
-m
 libro
 igual
 politico
@@ -361,7 +356,6 @@ total
 creo
 tengo
 dios
-c
 española
 condiciones
 mexico
@@ -580,7 +574,6 @@ dejar
 cine
 salir
 comunicacion
-b
 experiencia
 demasiado
 plan
@@ -609,7 +602,6 @@ evitar
 color
 actividades
 mesa
-p
 decia
 cuyo
 debido
@@ -697,7 +689,6 @@ diario
 ve
 derecha
 ambiente
-i
 habra
 precisamente
 enfermedad
@@ -748,7 +739,6 @@ sean
 actitud
 deja
 dejo
-d
 llevar
 negro
 texto
@@ -827,12 +817,10 @@ mira
 llamado
 tecnica
 titulo
-s
 principios
 octubre
 volvio
 periodo
-g
 encontrar
 democracia
 aumento
@@ -843,7 +831,6 @@ pese
 ocasiones
 exterior
 solucion
-u
 hija
 sueño
 paris
@@ -968,7 +955,6 @@ arriba
 generales
 septiembre
 blanca
-r
 aquellas
 teoria
 animales
@@ -980,7 +966,6 @@ paciente
 conseguir
 maximo
 noviembre
-j
 lider
 hospital
 diversas
@@ -993,7 +978,6 @@ flores
 niveles
 afirmo
 explico
-n
 somos
 terminos
 premio
@@ -1334,7 +1318,6 @@ historico
 agentes
 planta
 venezuela
-f
 actuacion
 iban
 actos
@@ -1361,14 +1344,12 @@ rato
 pagar
 colegio
 sabes
-l
 personaje
 areas
 audiencia
 doce
 haga
 periodico
-v
 distribucion
 ausencia
 entrevista
@@ -1658,7 +1639,6 @@ diseño
 cuarenta
 encontro
 poesia
-t
 planes
 ee
 negocios
@@ -1740,7 +1720,6 @@ murio
 estas
 saben
 generalmente
-h
 dormir
 individuo
 cuerpos
@@ -2028,7 +2007,6 @@ llegan
 mezcla
 drogas
 vivienda
-x
 escuchar
 coronel
 completamente
@@ -4478,7 +4456,6 @@ iniciativas
 requieren
 concejal
 james
-o
 verla
 estimulo
 nombramiento
@@ -4601,7 +4578,6 @@ abandono
 justificar
 procede
 parto
-k
 probar
 proporciona
 contratacion
@@ -5368,7 +5344,6 @@ cerebral
 clinico
 entraba
 tele
-w
 crimenes
 emisoras
 plantear
@@ -7161,7 +7136,6 @@ milagros
 bs
 medianoche
 mocion
-q
 unio
 mencionada
 encargo
@@ -10572,7 +10546,6 @@ habitan
 intensas
 pieles
 procurando
-z
 afines
 athletic
 extasis
@@ -12398,7 +12371,6 @@ latitudes
 monje
 so
 trate
-a
 aparcamiento
 determinantes
 irani
@@ -15218,7 +15190,6 @@ penetrante
 tunez
 ucr
 vincula
-
 agropecuaria
 ajustado
 apropiados
@@ -18098,7 +18069,6 @@ tiraba
 triples
 viviamos
 yegua
-a
 aplazamiento
 cinico
 derroche
@@ -26980,7 +26950,6 @@ dicte
 dijese
 discutieron
 divertia
-e
 equiparacion
 equivocas
 escalofriante
