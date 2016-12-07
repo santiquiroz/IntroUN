@@ -7,6 +7,7 @@ public class Parcial {
 	public float porncentaje;
 	public float nota;
 	public int tiempo_dias;
+	//public string materiaName;
 
 	public Parcial(float porcentaje, int tiempo_dias){
 		this.porncentaje = porcentaje;

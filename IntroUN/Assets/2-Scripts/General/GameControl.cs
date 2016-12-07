@@ -31,6 +31,7 @@ public class GameControl : MonoBehaviour {
 	private const string rutaInfoBase = "InfoBase.dat";
 	private const string rutaPlayer = "Player.dat";
 	private const string rutaDataConsistence = "DataConsistence.dat";
+	private const string tiempoSemestre = "Semestre.dat";
 
 
 	private bool resetar;
@@ -60,7 +61,6 @@ public class GameControl : MonoBehaviour {
 
 		for(int i = 0; i < categorias.Length; i++){
 			categoriasDic.Add(categorias[i].name, categorias[i]);
-			print (categorias [i].name);
 		}
 
 		instalacion = false;
@@ -127,7 +127,6 @@ public class GameControl : MonoBehaviour {
 		dataConsistence.dia = canvas.GetComponent<TiempoSemestre> ().dias;
 		dataConsistence.semana = canvas.GetComponent<TiempoSemestre> ().semanas;
 
-		print (player.transform.position);
 
 		SaveDataConsistence(path + rutaDataConsistence);
 	}
@@ -222,6 +221,61 @@ public class GameControl : MonoBehaviour {
 			}
 		}
 
+	}
+
+	//==================================================================================================
+	/*
+	 * 
+	*/
+	public List<Parcial> LoadTiempoSemestre(){
+		string ruta = path + tiempoSemestre;
+		if (File.Exists (ruta)) {
+			try {
+				BinaryFormatter bf = new BinaryFormatter ();
+				FileStream file = File.Open (ruta, FileMode.Open);
+				List<Parcial> parcialesSemestre = (List<Parcial>)bf.Deserialize (file);
+				file.Close ();
+				Debug.Log ("Load Data Tiempo semestre");
+				return parcialesSemestre;
+			} catch (Exception e) {
+				Debug.Log (e.Message);
+			}
+		}
+		return TiempoSemestreDefault ();
+
+	}
+
+	//==================================================================================================
+	/*
+	 * Guarda la información para la Consistencia entre Escenas y Sesiones
+	*/
+	public void SaveTiempoSemestre(string ruta, List<Parcial> paricialesSemestre){
+
+		try{
+			BinaryFormatter bf = new BinaryFormatter ();
+			FileStream file = File.Create (ruta);	
+			bf.Serialize (file, paricialesSemestre);
+			file.Close ();
+		}catch(Exception e){
+			Debug.Log(e.Message);
+		}
+	}
+
+	//==================================================================================================
+	/*
+	 * 
+	*/
+	public List<Parcial> TiempoSemestreDefault(){
+		List<Parcial> parcialesSemestre = new List<Parcial>();
+		foreach (Materia m in playerData.materias) {
+			foreach (Parcial p in m.parciales) {
+				parcialesSemestre.Add (p);
+			}
+		}
+		parcialesSemestre.Sort(new Comparison<Parcial>((x, y) => x.tiempo_dias.CompareTo(y.tiempo_dias)));
+
+		SaveTiempoSemestre (path + tiempoSemestre, parcialesSemestre);
+		return parcialesSemestre;
 	}
 
 }

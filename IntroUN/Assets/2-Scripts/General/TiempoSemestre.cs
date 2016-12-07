@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.UI;
 
 public class TiempoSemestre : MonoBehaviour {
@@ -13,6 +14,7 @@ public class TiempoSemestre : MonoBehaviour {
 	public int dias;
 	public int semanas;
 
+	public List<Parcial> parcialesSemestre;
 	public Text textoSemanas;
 
 	public GameObject alert1;
@@ -24,9 +26,11 @@ public class TiempoSemestre : MonoBehaviour {
 	void Start () {
 
 		iniciar = true;
+		parcialesSemestre = GameControl.control.LoadTiempoSemestre ();
 		//Actualizar con GameControl
 		//dias = GameControl.control.dias;
 		//semanas = GameControl.control.semanas;
+
 		textoSemanas.text = semanas.ToString () + "s. : " + dias.ToString () + "d.";
 
 		tiempoAnterior = tiempo;

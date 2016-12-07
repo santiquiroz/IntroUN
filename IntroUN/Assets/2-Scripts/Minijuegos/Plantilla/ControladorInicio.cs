@@ -17,6 +17,7 @@ public class ControladorInicio : MonoBehaviour {
 	private Vector3 posEstudiante;
 
 	private bool jefe;
+	public bool jefeForTest;
 
 
 	//Set de minijuegos -> NO TOCAR
@@ -31,10 +32,10 @@ public class ControladorInicio : MonoBehaviour {
 		try{
 			jefe = GameControl.control.sceneManager.parcial;
 		}catch(System.Exception ex){
-			jefe = true;
+			jefe = jefeForTest;
 		}
 
-		print (jefe);
+
 
 		if (jefe) {
 			indexMinijuego = 0;

@@ -18,7 +18,7 @@ public class ArmarPalabras : MonoBehaviour {
     private Dictionary<string, int> letrasPresentadas;
     private string[] letras;
     private int cantidadCasillas = 12; //Cambiando este valor se puede graduar la dificultad
-    private int cantidadLetras = 27; //Cambiando este valor se puede graduar la dificultad
+    private int cantidadLetras = 15; //Cambiando este valor se puede graduar la dificultad
 
 
 	// Use this for initialization
