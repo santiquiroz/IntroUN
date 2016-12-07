@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.EventSystems;
-using UnityEngine.SceneManagement;
 
 /*
  * juaalvarezme
@@ -43,10 +42,19 @@ public class EstudianteMovimiento : MonoBehaviour {
 		cambioEscena = false;
 		pointer.SetActive(false);
 
-		if (GameControl.control.desdeMinijuego && !GameControl.control.parcial) {
-			GameControl.control.desdeMinijuego = false;
-			transform.position = GameControl.control.ultimaPosEdificio;
-			camara.transform.position = GameControl.control.ultimaPosEdificioCam;
+		if (GameControl.control.sceneManager.cambio) {
+			GameControl.control.sceneManager.cambio = false;
+
+			if (GameControl.control.sceneManager.currentScene == GameControl.control.sceneManager.campusScene) {
+				transform.position = GameControl.control.sceneManager.posPlayer_Campus;
+				camara.transform.position = GameControl.control.sceneManager.porCamara_Campus;
+			}
+			 else if (GameControl.control.sceneManager.currentScene == GameControl.control.sceneManager.interioresScene
+					&& GameControl.control.sceneManager.fromMinigame) {
+				transform.position = GameControl.control.sceneManager.posPlayer_Interiores;
+				camara.transform.position = GameControl.control.sceneManager.porCamara_Interiores;
+			}
+
 		}
 
 	}
@@ -80,7 +88,7 @@ public class EstudianteMovimiento : MonoBehaviour {
 						}
 					} else{
 						edificio = hit.transform.gameObject;
-						print (edificio.name);
+
 						//--------------------------------------------
 						if(edificio.name != "Crital_Estres")
 							edificio.GetComponent<EdificioControl>().asignarCategoria();
@@ -122,7 +130,7 @@ public class EstudianteMovimiento : MonoBehaviour {
 	*/
 	public void Mover(Vector3 punto, bool marcarPointer){
 		//agent.Warp(transform.position);
-		print(punto);
+
 		agent.destination = punto;
 		destino = punto;
 		if (marcarPointer) {
@@ -168,13 +176,21 @@ public class EstudianteMovimiento : MonoBehaviour {
 	void cambiarScena(){
 		
 		if (edificio.gameObject.layer == LayerMask.NameToLayer ("Tienda")) {
-            SceneManager.LoadScene(2);
+			
+			GameControl.control.sceneManager.CampusToTienda (transform.position, camara.transform.position);
+
 		}else if(edificio.name == "Crital_Estres"){
+			
 			gameObject.GetComponent<EstudianteEstadisticas> ().restaurarEestres ();
+
 		} else {
-			GameControl.control.indexUtimoEnemigo = -1;
-			GameControl.control.Save ();
-			SceneManager.LoadScene (1);
+			int materia = edificio.GetComponent<EdificioControl> ().materia;
+			GameControl.control.sceneManager.CampusToInteriores (transform.position, 
+																 camara.transform.position, 
+																 GameControl.control.playerData.materias[materia], 
+																 false);
+
+			//GameControl.control.sceneManager.CampusToInteriores (transform.position, camara.transform.position, null, false);
 		}
 	}
 

@@ -4,54 +4,55 @@ using UnityEngine.SceneManagement;
 
 public class EstudianteCollision : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-
+	private Vector3 posCamara;
+	private int index;
+	private float saludEnemigo;
+	private float time ;
+	private float dif;
+	private float poderAtaque;
 
 	void OnTriggerEnter(Collider other) {
-		if (GameControl.control.energiaActual > 0) {
-
-			if (other.gameObject.tag == "Enemy") {
-
-				//--------------------------------------------------------
+		
 
 
-				if (!gameObject.GetComponent<EstudianteEstadisticas> ().enregiaActividad (2))
-					return;
+		if (other.gameObject.tag == "Enemy" && gameObject.GetComponent<EstudianteEstadisticas> ().enregiaActividad (2)) {
+			
+			posCamara = gameObject.GetComponent<EstudianteMovimiento> ().camara.transform.position;
+			index = other.GetComponent<EnemigoIndex> ().index;
+			saludEnemigo = 400;
+			time = 40f;
+			dif = 0.5f;
+			poderAtaque = gameObject.GetComponent<EstudianteEstadisticas> ().poderDeAtaque ();
 
-				GameControl.control.ultimaPosEdificio = transform.position;
-				GameControl.control.ultimaPosEdificioCam = gameObject.GetComponent<EstudianteMovimiento>().camara.transform.position;
+			cargarEscena ();
+		}else if(other.gameObject.tag == "Jefe" && gameObject.GetComponent<EstudianteEstadisticas> ().enregiaActividad (3)){
+			
+			posCamara = gameObject.GetComponent<EstudianteMovimiento> ().camara.transform.position;
+			index = -1;
+			saludEnemigo = 1000;
+			time = 40f;
+			dif = 0.5f;
+			poderAtaque = gameObject.GetComponent<EstudianteEstadisticas> ().poderDeAtaque ();
 
-				GameControl.control.indexUtimoEnemigo = other.GetComponent<EnemigoIndex> ().index;
-				GameControl.control.saludEnemigo = 400;
-				GameControl.control.tiempo = 40f;
-
-				if (GameControl.control.categoriMinijuego == 0)
-					SceneManager.LoadScene (2);
-				else if (GameControl.control.categoriMinijuego == 1)
-					SceneManager.LoadScene (3);
-				else if (GameControl.control.categoriMinijuego == 2)
-					SceneManager.LoadScene (4);
-
-			}else if(other.gameObject.tag == "Jefe" && !gameObject.GetComponent<EstudianteEstadisticas> ().enregiaActividad (3)){
-				GameControl.control.saludEnemigo = 1000;
-				GameControl.control.tiempo = 90f;
-
-				SceneManager.LoadScene (5);
-
-			}
+			cargarEscena ();
 		}
 
-		if (other.gameObject.name == "Exit")
-			SceneManager.LoadScene (0);
 
-		//--------------------------------------------------------
+		if (other.gameObject.name == "Exit")
+			GameControl.control.sceneManager.InterioresToCampus ();
+
+
+	}
+
+
+	private void cargarEscena(){
+		GameControl.control.sceneManager.InterioresToMinijuegos (
+			transform.position, 
+			posCamara,
+			index,
+			saludEnemigo,
+			time,
+			dif,
+			poderAtaque);
 	}
 }

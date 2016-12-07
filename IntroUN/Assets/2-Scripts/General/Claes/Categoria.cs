@@ -9,4 +9,5 @@ public class Categoria {
 	public GameObject indicator;
 	public GameObject basciEnemy;
 	public GameObject boosEnemy;
+	public string[] minijuegos;
 }

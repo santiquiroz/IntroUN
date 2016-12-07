@@ -59,12 +59,10 @@ public class EstudianteEstadisticas : MonoBehaviour {
 		panelEstadisticas.SetActive(panelEstaActivo);
 		panelMaterias.SetActive(panelMateActivo);
 
-		exp = GameControl.control.experiencia;
-		semestre = GameControl.control.semestre;
-		papa = GameControl.control.papa;
-		nivel = GameControl.control.nivel;
-		poderAtaque = beta	*GameControl.control.expEsperada*exp/100;
-		GameControl.control.poderAtaque = poderAtaque;
+		exp = GameControl.control.playerData.experiencia;
+		semestre = GameControl.control.playerData.semestre;
+		papa = GameControl.control.playerData.papa;
+		nivel = GameControl.control.playerData.niveles[GameControl.control.playerData.nivel].name;
 
 		timeDelta = time;
 		energiaPorRespiro = 0.1f;
@@ -117,19 +115,19 @@ public class EstudianteEstadisticas : MonoBehaviour {
 	public void drawEstadisticas(){
 		textExp.text = exp.ToString ();
 		textPapa.text = papa.ToString ();
-
+		/*
 		string materia = GameControl.control.materias [0];
 		textMateria1.text = materia;
 		textMateria1Nota.text = GameControl.control.notas [materia].ToString();
 
 		materia = GameControl.control.materias [1];
-		textMateria2.text = materia;
+		textMateria2.text = materia;																					!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 		textMateria2Nota.text = GameControl.control.notas [materia].ToString();
 
 		materia = GameControl.control.materias [2];
 		textMateria3.text = materia;
 		textMateria3Nota.text = GameControl.control.notas [materia].ToString();
-
+*/
 		setEnergia (0);
 		setEstres (0);
 
@@ -142,8 +140,8 @@ public class EstudianteEstadisticas : MonoBehaviour {
 	 * 		parámetros: -dif: Cantida que disminuye la energia
 	 */
 	public bool enregiaActividad(int actividad){
-		float energia = GameControl.control.energiaActual;
-		float estres = GameControl.control.estresActual;
+		float energia = GameControl.control.playerData.energiaActual;
+		float estres = GameControl.control.playerData.estresActual;
 
 		if (actividad == 0)
 			setEnergia (energiaPorRespiro);
@@ -167,15 +165,15 @@ public class EstudianteEstadisticas : MonoBehaviour {
 	 * 		parámetros: -dif: Cantida que disminuye la energia
 	 */
 	public void setEnergia(float dif){
-		float energia = GameControl.control.energiaActual - dif;
-		float energiaT = GameControl.control.energiaTotal;
+		float energia = GameControl.control.playerData.energiaActual - dif;
+		float energiaT = GameControl.control.playerData.energiaTotal;
 	
 		if (energia < 0) {
 			energia = 0;
 		}
 		
 		energiaContent.fillAmount = Map (energia, 0, energiaT, 0, 1);
-		GameControl.control.energiaActual = energia;
+		GameControl.control.playerData.energiaActual = energia;
 	}
 
 	//==================================================================================================
@@ -183,15 +181,15 @@ public class EstudianteEstadisticas : MonoBehaviour {
 	 * Metodo para reiniciar la energia
 	 */
 	public void restaurarEnergia(float dif){
-		float energia = GameControl.control.energiaActual + dif;
-		float energiaT = GameControl.control.energiaTotal;
+		float energia = GameControl.control.playerData.energiaActual + dif;
+		float energiaT = GameControl.control.playerData.energiaTotal;
 
 		if (energia > energiaT) {
 			energia = energiaT;
 		}
 
 		energiaContent.fillAmount = Map (energia, 0, energiaT, 0, 1);
-		GameControl.control.energiaActual = energia;
+		GameControl.control.playerData.energiaActual = energia;
 	}
 
 	//==================================================================================================
@@ -200,14 +198,14 @@ public class EstudianteEstadisticas : MonoBehaviour {
 	 * 		parámetros: -dif: Cantida que disminuye la energia
 	 */
 	public void setEstres(float dif){
-		float estres = GameControl.control.estresActual - dif;
-		float estresT = GameControl.control.estresTotal;
+		float estres = GameControl.control.playerData.estresActual - dif;
+		float estresT = GameControl.control.playerData.estresTotal;
 
 		if (estres< 0)
 			estres = 0;
 
 		estresContent.fillAmount = Map (estres, 0, estresT, 0, 1);
-		GameControl.control.estresActual = estres;
+		GameControl.control.playerData.estresActual = estres;
 	}
 
 	//==================================================================================================
@@ -215,8 +213,18 @@ public class EstudianteEstadisticas : MonoBehaviour {
 	 * Metodo para reiniciar la energia
 	 */
 	public void restaurarEestres(){
-		GameControl.control.estresActual = GameControl.control.estresTotal;
+		GameControl.control.playerData.estresActual = GameControl.control.playerData.estresTotal;
 		estresContent.fillAmount = 1;
+	}
+
+
+	//==================================================================================================
+	/*
+	 * Metodo para calcular el poder de ataque
+	 */
+	public float poderDeAtaque(){
+		poderAtaque = beta	*GameControl.control.playerData.expEsperada*exp/100;
+		return poderAtaque;
 	}
 
 	//==================================================================================================

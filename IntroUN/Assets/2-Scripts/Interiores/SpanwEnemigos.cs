@@ -14,36 +14,25 @@ public class SpanwEnemigos : MonoBehaviour {
 	private int cantidadPuntos;
 	private int totalenemigos;
 
-	private int categoria;
 
 	// Use this for initialization
 	void Start () {
 		cantidadPuntos = puntos.Count;
-		categoria = GameControl.control.categoriMinijuego;
-		string materia = GameControl.control.materias [categoria];
-		totalenemigos = GameControl.control.enemigosMateria[materia];;
+		string materia = GameControl.control.sceneManager.materia.name;
+		totalenemigos = GameControl.control.sceneManager.materia.cantidadEnemigos;
 
-		if (GameControl.control.parcial) {
+		if (GameControl.control.sceneManager.parcial) {
 			Instantiate (jefe, jefePos.transform.position, Quaternion.identity);
 		} else {
 
-			if (categoria < enemigos.Length)
-				enemgoToInstantiate = enemigos [categoria];
-			else
-				enemgoToInstantiate = enemigos [0];
-
-
-			if (GameControl.control.indexUtimoEnemigo > -1)
-				puntos.RemoveAt (GameControl.control.indexUtimoEnemigo);
+			enemgoToInstantiate = GameControl.control.sceneManager.categoria.basciEnemy;
+			if (GameControl.control.sceneManager.indexEnemigo > -1)
+				puntos.RemoveAt (GameControl.control.sceneManager.indexEnemigo);
 
 			crearEnemigos ();
 		}
 	}
 	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 
 
 	void crearEnemigos(){

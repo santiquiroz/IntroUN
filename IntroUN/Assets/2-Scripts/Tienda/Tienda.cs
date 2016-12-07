@@ -3,9 +3,9 @@ using System.Collections;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using System.Collections.Generic;
-using UnityEngine.SceneManagement;
 
 public class Tienda : MonoBehaviour {
+
 
     public Text dinero;
     public int cantidadPaginas;
@@ -24,6 +24,9 @@ public class Tienda : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+
+
+
 
         dineroActual = int.Parse(dinero.text);
         alimentos = new Dictionary<string, float>();
@@ -98,17 +101,16 @@ public class Tienda : MonoBehaviour {
 
 	//Recordar quitar cuando se Arregle Script EstudianteEstaditicas
 	public void restaurarEnergia(float dif){
-		float energia = GameControl.control.energiaActual + dif;
-		float energiaT = GameControl.control.energiaTotal;
+		float energia = GameControl.control.playerData.energiaActual + dif;
+		float energiaT = GameControl.control.playerData.energiaTotal;
 
 		if (energia > energiaT) {
 			energia = energiaT;
 		}
 
-		GameControl.control.energiaActual = energia;
+		GameControl.control.playerData.energiaActual = energia;
 
-		// Acá debe retornar a la escena campus
-		SceneManager.LoadScene (0);
+		GameControl.control.sceneManager.TiendaToCampus ();
 	}
 		
 

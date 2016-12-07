@@ -18,12 +18,7 @@ public class RotacionCamara : MonoBehaviour
 	//==================================================================================================
     void Start()
     {
-		/*
-		if (GameControl.control.load && GameControl.control.ultimaPosicionCamara != null) {
-			transform.position = GameControl.control.ultimaPosicionCamara;
-			//print(GameControl.control.ultimaPosicionCamara);
-		}
-		*/
+		transform.LookAt(target.transform);
     }
 
 	//==================================================================================================

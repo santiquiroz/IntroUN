@@ -10,8 +10,8 @@ public class TiempoSemestre : MonoBehaviour {
 	private float tiempo;
 	private float tiempoAnterior;
 	private bool iniciar;
-	private int dias;
-	private int semanas;
+	public int dias;
+	public int semanas;
 
 	public Text textoSemanas;
 
@@ -25,14 +25,14 @@ public class TiempoSemestre : MonoBehaviour {
 
 		iniciar = true;
 		//Actualizar con GameControl
-		dias = GameControl.control.dias;
-		semanas = GameControl.control.semanas;
+		//dias = GameControl.control.dias;
+		//semanas = GameControl.control.semanas;
 		textoSemanas.text = semanas.ToString () + "s. : " + dias.ToString () + "d.";
 
 		tiempoAnterior = tiempo;
 		equivalenciaDia = tiempo / (dias * semanas);
 
-		diaAlerta = GameControl.control.diaAlerta;
+		diaAlerta = 6;
 
 		if (diaAlerta > 6)
 			alert1.SetActive (false);
@@ -55,14 +55,14 @@ public class TiempoSemestre : MonoBehaviour {
 				} else if (tiempoAnterior - tiempo >= equivalenciaDia) {
 					tiempoAnterior = tiempo;
 					dias--;
-					ajustarAlerta ();
+					//ajustarAlerta ();
 					if (dias <= 0) {
 						semanas--;
-						GameControl.control.semanas = semanas;
+						GameControl.control.dataConsistence.semana = semanas;
 						dias = 6;
 					}
 
-					GameControl.control.dias = dias;
+					GameControl.control.dataConsistence.dia = dias;
 
 					textoSemanas.text = semanas.ToString () + "s. : " + dias.ToString () + "d.";
 				}
@@ -71,12 +71,12 @@ public class TiempoSemestre : MonoBehaviour {
 	}
 
 	void ajustarAlerta(){
-		
+		/*
 		if (diaAlerta >= 0 && GameControl.control.parciales["Calculo"] < 4) {
 			diaAlerta--;
 
 			if (diaAlerta == 0) {
-				GameControl.control.parcial = true;
+				//GameControl.control.parcial = true;
 				alert1.GetComponent<Animator> ().SetTrigger ("Alerta");
 				alert1.GetComponent<Button> ().onClick.Invoke ();
 			} else if (diaAlerta < 0) {
@@ -93,11 +93,12 @@ public class TiempoSemestre : MonoBehaviour {
 
 
 			alert1.SetActive (true);
-			GameControl.control.diaAlerta = diaAlerta;
+			//GameControl.control.diaAlerta = diaAlerta;
 			Vector3 pos = diasObj [diaAlerta].transform.position;
 			pos.y = alert1.transform.position.y;
 			alert1.transform.position = pos;
 		}
+		*/
 	}
 
 	public void activar(GameObject apoyo){

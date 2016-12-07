@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 /*
  * juaalvarezme
@@ -63,18 +62,19 @@ public class PersonajesScripts : MonoBehaviour {
 		enemigoAnim = 	 enemigo.GetComponent<Animator> ();
 
 		try{
-			saludEnimigo = GameControl.control.saludEnemigo;
-			saludEnimigoTotal = GameControl.control.saludEnemigo;
-			puntosDaño = GameControl.control.poderAtaque;
-			jefe = GameControl.control.parcial;
+			saludEnimigoTotal = GameControl.control.sceneManager.saludEnemigo;
+			saludEnimigo = saludEnimigoTotal;
+			puntosDaño = GameControl.control.sceneManager.poderAtaque;
+			jefe = GameControl.control.sceneManager.parcial;
 		}catch(System.Exception ex){
+			Debug.Log ("Error en PersonajesScripts, producido por GameControl.control.sceneManager.");
 			saludEnimigo = 400;
 			puntosDaño = 80;
 			jefe = false;
 		}
 
 		ataques = 0;
-
+		mensaje.SetActive (false);
 		textoSalud.text = saludEnimigo.ToString () + " hp";
 
 		estudianteAtaques = new string[4]{"Attack 01", "Attack 02", "Double Attack", "Jump Attack"};
@@ -218,23 +218,29 @@ public class PersonajesScripts : MonoBehaviour {
 			txt = "TIEMPO!";
 
 		try{
-			int categoria = GameControl.control.categoriMinijuego;
-			string materia = GameControl.control.materias [categoria];
-			GameControl.control.enemigosMateria[materia]--;
-			GameControl.control.parciales[materia]++;
+			
 
-			txt += GameControl.control.experiencia.ToString ();
+
+
+			txt += GameControl.control.playerData.experiencia.ToString ();
 			txt += " + ";
 			txt += ataques.ToString ();
 
-			if (jefe) {
+			if (jefe && GameControl.control.sceneManager.materia.cantidadParciales > 0) {
 				float nota = calcularNota (fin);
 				txt += "\nNota: " + nota.ToString ();
-				GameControl.control.notas [materia] += nota * 0.25f/(GameControl.control.parciales[materia]*0.25f);
+
+				int p = GameControl.control.sceneManager.materia.parciales.Length - GameControl.control.sceneManager.materia.cantidadParciales;
+				GameControl.control.sceneManager.materia.parciales[p].nota = nota;
+				GameControl.control.sceneManager.materia.porcentaje += GameControl.control.sceneManager.materia.parciales[p - 1].porncentaje;
+				GameControl.control.sceneManager.materia.nota += nota * GameControl.control.sceneManager.materia.parciales[p - 1].porncentaje / GameControl.control.sceneManager.materia.porcentaje;
+				GameControl.control.sceneManager.materia.cantidadParciales--;
+			}else{
+				GameControl.control.sceneManager.materia.cantidadEnemigos--;
 			}
 
-			GameControl.control.experiencia += ataques;
-			GameControl.control.desdeMinijuego = true;
+			GameControl.control.playerData.experiencia += ataques;
+
 		}catch(System.Exception ex){
 			txt += "?";
 			txt += " + ";
@@ -261,8 +267,8 @@ public class PersonajesScripts : MonoBehaviour {
 		float tiempoTotal = 0f;
 		float saludTotal = 0f;
 		try{
-			tiempoTotal = GameControl.control.tiempo;
-			saludTotal = GameControl.control.saludEnemigo;
+			tiempoTotal = GameControl.control.sceneManager.tiempo;
+			saludTotal = GameControl.control.sceneManager.saludEnemigo;
 		}catch(System.Exception ex){
 			tiempoTotal = 45f;
 			saludTotal = 400f;
@@ -289,10 +295,10 @@ public class PersonajesScripts : MonoBehaviour {
 	 *	Cargar Escena Campus o Edificio
 	*/
 	void regresar(){
-		if(jefe)
-			SceneManager.LoadScene (0);
+		if (jefe)
+			GameControl.control.sceneManager.MinijuegoToCampus ();
 		else
-			SceneManager.LoadScene (1);
+			GameControl.control.sceneManager.MinijuegoToInteriores ();
 	}
 
 

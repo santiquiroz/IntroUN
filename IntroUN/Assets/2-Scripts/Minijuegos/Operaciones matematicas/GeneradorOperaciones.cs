@@ -40,7 +40,7 @@ public class GeneradorOperaciones : MonoBehaviour {
 	*/
 	void Start () {
 
-		controladorPersonajes = GameObject.Find ("MiniJuego").GetComponent<MinijuegoGeneral> ().controladorPersonajes;
+		//controladorPersonajes = GameObject.Find ("MiniJuego").GetComponent<MinijuegoGeneral> ().controladorPersonajes;
 
 		aciertos = 0;
 		errores = 0;

@@ -3,7 +3,7 @@ using System.Collections;
 
 public class EdificioControl : MonoBehaviour {
 
-	public int categoria;
+	public int materia;
 	GameObject pointer;
 
 	void Start () {
@@ -18,13 +18,10 @@ public class EdificioControl : MonoBehaviour {
 	}
 
 	public void asignarCategoria(){
-		if(categoria > 0)
-			GameControl.control.categoriMinijuego = categoria;
 		activarPointer (true);
 	}
 
 	public void asignarCategoria(int casoEspecial){
-		GameControl.control.categoriMinijuego = casoEspecial;
 		activarPointer (true);
 	}
 

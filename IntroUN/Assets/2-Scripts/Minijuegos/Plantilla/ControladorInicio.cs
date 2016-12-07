@@ -29,11 +29,12 @@ public class ControladorInicio : MonoBehaviour {
 
 
 		try{
-			jefe = GameControl.control.parcial;
+			jefe = GameControl.control.sceneManager.parcial;
 		}catch(System.Exception ex){
-			jefe = false;
+			jefe = true;
 		}
 
+		print (jefe);
 
 		if (jefe) {
 			indexMinijuego = 0;

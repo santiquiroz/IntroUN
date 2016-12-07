@@ -26,7 +26,7 @@ public class Timer : MonoBehaviour {
 	void Start () {
 		iniciar = false;
 		try{
-			tiempo = GameControl.control.tiempo;
+			tiempo = GameControl.control.sceneManager.tiempo;
 		}catch(System.Exception ex){
 			tiempo = 45f;
 		}
