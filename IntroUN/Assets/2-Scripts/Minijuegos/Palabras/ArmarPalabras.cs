@@ -13,17 +13,20 @@ public class ArmarPalabras : MonoBehaviour {
     public PersonajesScripts controladorPersonajes;
     public TextAsset archivoPalabras;
     public Text palabraIngresada;
+    public Transform iconoCargar;
     private Dictionary<string, int> palabras;
     private Dictionary<string, int> palabrasIngresadas;
     private Dictionary<string, int> letrasPresentadas;
     private string[] letras;
-    private int cantidadCasillas = 12; //Cambiando este valor se puede graduar la dificultad
-    private int cantidadLetras = 15; //Cambiando este valor se puede graduar la dificultad
+    private int cantidadCasillas = 8; //Cambiando este valor se puede graduar la dificultad
+    private int cantidadLetras = 12; //Cambiando este valor se puede graduar la dificultad (cantCasillas-27)
+    private bool esperar;
+    
 
 
 	// Use this for initialization
 	void Start () {
-
+        esperar = false;
         palabras = new Dictionary<string,int>();
         palabrasIngresadas = new Dictionary<string, int>();
         letrasPresentadas = new Dictionary<string, int>();
@@ -42,14 +45,17 @@ public class ArmarPalabras : MonoBehaviour {
 	
 	
 	// Update is called once per frame
-	//void Update () {
-	
-	//}
+	void Update () {
+	    if (esperar) iconoCargar.Rotate(-Vector3.forward * Time.deltaTime * 350); 
+	}
 
     public void agregarLetra()
     {
-        string letraSeleccionada = EventSystem.current.currentSelectedGameObject.GetComponent<Text>().text;
-        palabraIngresada.text = palabraIngresada.text + letraSeleccionada;
+        if (!esperar)
+        {
+            string letraSeleccionada = EventSystem.current.currentSelectedGameObject.GetComponent<Text>().text;
+            palabraIngresada.text = palabraIngresada.text + letraSeleccionada;
+        }
 
 
     }
@@ -76,8 +82,10 @@ public class ArmarPalabras : MonoBehaviour {
 
     public void recargar()
     {
+
         palabraIngresada.text = "";
-        generarLetras();
+        StartCoroutine(esperar5segundos());
+        
     }
 
     public void borrar()
@@ -102,5 +110,14 @@ public class ArmarPalabras : MonoBehaviour {
         }
     }
 
+    IEnumerator esperar5segundos()
+    {
+        esperar = true;
+        iconoCargar.transform.gameObject.SetActive(true);
+        yield return new WaitForSeconds(5);
+        iconoCargar.transform.gameObject.SetActive(false);
+        esperar = false;
+        generarLetras();
+    }
     
 }
