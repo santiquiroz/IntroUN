@@ -82,9 +82,11 @@ public class ArmarPalabras : MonoBehaviour {
 
     public void recargar()
     {
-
-        palabraIngresada.text = "";
-        StartCoroutine(esperar5segundos());
+        if (!esperar)
+        {
+            palabraIngresada.text = "";
+            StartCoroutine(esperar5segundos());
+        }
         
     }
 
@@ -114,9 +116,19 @@ public class ArmarPalabras : MonoBehaviour {
     {
         esperar = true;
         iconoCargar.transform.gameObject.SetActive(true);
+        for (int i = 0; i < cantidadCasillas; i++)
+        {
+            this.transform.GetChild(i).transform.gameObject.SetActive(false);
+
+        }
         yield return new WaitForSeconds(5);
         iconoCargar.transform.gameObject.SetActive(false);
         esperar = false;
+        for (int i = 0; i < cantidadCasillas; i++)
+        {
+            this.transform.GetChild(i).transform.gameObject.SetActive(true);
+
+        }
         generarLetras();
     }
     
