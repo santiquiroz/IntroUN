@@ -16,6 +16,7 @@ public class Player {
 	public float expEsperada;
 	public int cantidadMaterias;
 	public Materia[] materias;
+	public int bolsaDeCreditos;
 
 	public float energiaActual;
 	public float energiaTotal;
@@ -25,4 +26,21 @@ public class Player {
 	public float dinero;
 
 
+	public string buscarCategoria(string materia){
+		foreach (Materia m in materias) {
+			if (m.name == materia)
+				return m.categoria;
+		}
+		Debug.Log ("Error buscarCategoria");
+		return null;
+	}
+
+	public Materia buscarMateria(string materia){
+		foreach (Materia m in materias) {
+			if (m.name == materia)
+				return m;
+		}
+		Debug.Log ("Error buscandoMateria");
+		return null;
+	}
 }

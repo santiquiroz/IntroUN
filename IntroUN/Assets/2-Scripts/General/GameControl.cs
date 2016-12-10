@@ -229,7 +229,7 @@ public class GameControl : MonoBehaviour {
 	*/
 	public List<Parcial> LoadTiempoSemestre(){
 		string ruta = path + tiempoSemestre;
-		if (File.Exists (ruta)) {
+		if (File.Exists (path + instalacion) && File.Exists (ruta)) {
 			try {
 				BinaryFormatter bf = new BinaryFormatter ();
 				FileStream file = File.Open (ruta, FileMode.Open);
@@ -272,7 +272,7 @@ public class GameControl : MonoBehaviour {
 				parcialesSemestre.Add (p);
 			}
 		}
-		parcialesSemestre.Sort(new Comparison<Parcial>((x, y) => x.tiempo_dias.CompareTo(y.tiempo_dias)));
+		parcialesSemestre.Sort(new Comparison<Parcial>((x, y) => y.tiempo_dias.CompareTo(x.tiempo_dias)));
 
 		SaveTiempoSemestre (path + tiempoSemestre, parcialesSemestre);
 		return parcialesSemestre;

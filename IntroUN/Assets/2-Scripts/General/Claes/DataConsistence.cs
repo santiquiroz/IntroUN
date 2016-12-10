@@ -17,6 +17,7 @@ public class DataConsistence {
 
 	public int dia;
 	public int semana;
+	public int dias_trancurridos;
 
 	public void FillPosPlayer(Vector3 v3){
 		ultiPosPlayer_x = v3.x;

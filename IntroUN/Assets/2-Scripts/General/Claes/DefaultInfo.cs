@@ -19,6 +19,7 @@ public class DefaultInfo {
 		player.expEsperada = 400;
 		player.cantidadMaterias = 4;
 		materias ();
+		player.bolsaDeCreditos = 180;
 		player.energiaTotal = 100;
 		player.energiaActual = 100;
 		player.estresTotal = 100;
@@ -32,6 +33,7 @@ public class DefaultInfo {
 		dataConsistence = new DataConsistence ();
 		dataConsistence.dia = 6;
 		dataConsistence.semana = 16;
+		dataConsistence.dias_trancurridos = 0;
 
 		GameControl.control.dataConsistence = dataConsistence;
 		SaveDataConsistence ();
@@ -58,17 +60,19 @@ public class DefaultInfo {
 	private void materias(){
 		player.materias = new Materia[4];
 
-		player.materias [0] = new Materia ("Calculo", "Matematica", 4, 3);
-		player.materias [0].parciales = new Parcial[3]{ new Parcial(33.3f, 15), new Parcial(33.3f, 30), new Parcial(33.3f, 45)};
+		player.materias [0] = new Materia ("Calculo", "Fundamentacion", 4, 3);
+		player.materias [0].parciales = new Parcial[3]{ new Parcial(33.3f, 8, "Calculo"), new Parcial(33.3f, 30, "Calculo"), new Parcial(33.3f, 45, "Calculo")};
 
-		player.materias [1] = new Materia ("Fisica", "Fisica", 4, 4);
-		player.materias [1].parciales = new Parcial[4]{ new Parcial(30f, 15), new Parcial(30f, 30), new Parcial(20f, 45), new Parcial(20f, 60)};
+		player.materias [1] = new Materia ("Fisica", "Disciplinar", 4, 4);
+		player.materias [1].parciales = new Parcial[4]{ new Parcial(30f, 10, "Fisica"), new Parcial(30f, 30, "Fisica"), new Parcial(20f, 45, "Fisica"), new Parcial(20f, 60, "Fisica")};
 
 		player.materias [2] = new Materia ("Idiomas I", "Idiomas", 3, 3);
-		player.materias [2].parciales = new Parcial[3]{ new Parcial(25f, 15), new Parcial(25f, 30), new Parcial(25f, 45)};
+		player.materias [2].parciales = new Parcial[3]{ new Parcial(25f, 15, "Idiomas I"), new Parcial(25f, 30, "Idiomas I"), new Parcial(25f, 45, "Idiomas I")};
 
 		player.materias [3] = new Materia ("Electiva", "Libre eleccion", 3, 3);
-		player.materias [3].parciales = new Parcial[3]{ new Parcial(25f, 15), new Parcial(25f, 30), new Parcial(25f, 45)};
+		player.materias [3].parciales = new Parcial[3]{ new Parcial(25f, 15, "Electiva"), new Parcial(25f, 30, "Electiva"), new Parcial(25f, 45, "Electiva")};
+
+		player.bolsaDeCreditos -= 14;
 	}
 
 

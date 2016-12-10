@@ -7,46 +7,41 @@ public class TiempoSemestre : MonoBehaviour {
 
 
 	private float equivalenciaDia;
+
 	[SerializeField]
 	private float tiempo;
 	private float tiempoAnterior;
 	private bool iniciar;
+
 	public int dias;
 	public int semanas;
+	public int dias_trancurridos;
 
+	[SerializeField]
 	public List<Parcial> parcialesSemestre;
 	public Text textoSemanas;
 
-	public GameObject alert1;
+	public AlertaParcial alertPrefab;
+	public List<AlertaParcial> alertas;
 	public GameObject[] diasObj;
-	private int diaAlerta;
-	private bool activo;
 
 	// Use this for initialization
 	void Start () {
 
 		iniciar = true;
 		parcialesSemestre = GameControl.control.LoadTiempoSemestre ();
-		//Actualizar con GameControl
-		//dias = GameControl.control.dias;
-		//semanas = GameControl.control.semanas;
+		dias = GameControl.control.dataConsistence.dia;
+		semanas = GameControl.control.dataConsistence.semana;
+		dias_trancurridos = GameControl.control.dataConsistence.dias_trancurridos;
 
 		textoSemanas.text = semanas.ToString () + "s. : " + dias.ToString () + "d.";
 
 		tiempoAnterior = tiempo;
 		equivalenciaDia = tiempo / (dias * semanas);
 
-		diaAlerta = 6;
-
-		if (diaAlerta > 6)
-			alert1.SetActive (false);
-		else {
-			Vector3 pos = diasObj [diaAlerta].transform.position;
-			pos.y = alert1.transform.position.y;
-			alert1.transform.position = pos;
-			activo = false;
-		}
+		ajustarTiempo ();
 	}
+
 	
 	// Update is called once per frame
 	void Update () {
@@ -59,7 +54,10 @@ public class TiempoSemestre : MonoBehaviour {
 				} else if (tiempoAnterior - tiempo >= equivalenciaDia) {
 					tiempoAnterior = tiempo;
 					dias--;
-					//ajustarAlerta ();
+					dias_trancurridos++;
+
+					ajustarTiempo ();
+
 					if (dias <= 0) {
 						semanas--;
 						GameControl.control.dataConsistence.semana = semanas;
@@ -67,6 +65,7 @@ public class TiempoSemestre : MonoBehaviour {
 					}
 
 					GameControl.control.dataConsistence.dia = dias;
+					GameControl.control.dataConsistence.dias_trancurridos = dias_trancurridos;
 
 					textoSemanas.text = semanas.ToString () + "s. : " + dias.ToString () + "d.";
 				}
@@ -74,39 +73,48 @@ public class TiempoSemestre : MonoBehaviour {
 		}
 	}
 
-	void ajustarAlerta(){
-		/*
-		if (diaAlerta >= 0 && GameControl.control.parciales["Calculo"] < 4) {
-			diaAlerta--;
 
-			if (diaAlerta == 0) {
-				//GameControl.control.parcial = true;
-				alert1.GetComponent<Animator> ().SetTrigger ("Alerta");
-				alert1.GetComponent<Button> ().onClick.Invoke ();
-			} else if (diaAlerta < 0) {
-				alert1.SetActive (false);
+	void ajustarTiempo(){
+		int t = 0;
+		foreach (AlertaParcial obj in alertas) {
+			t = obj.parcial.tiempo_dias - dias_trancurridos;
 
-				if(GameControl.control.parciales["Calculo"] <4)
-					diaAlerta = GameControl.control.diaAlerta;
-				
-				return;
-			} else if (diaAlerta > 6) {
-				alert1.SetActive (false);
-				return;
+			if (t < 0) {
+				print ("Parcial!!!");
+				//GameControl.control.playerData.buscarMateria ();
+				//Ir a Parcial
+			} else {
+				Vector3 pos = diasObj [t].transform.position;
+				pos.y = obj.transform.position.y;
+				obj.transform.position = pos;
 			}
-
-
-			alert1.SetActive (true);
-			//GameControl.control.diaAlerta = diaAlerta;
-			Vector3 pos = diasObj [diaAlerta].transform.position;
-			pos.y = alert1.transform.position.y;
-			alert1.transform.position = pos;
 		}
-		*/
+
+
+		for (int i = parcialesSemestre.Count - 1; i >= 0; i--){
+			t = parcialesSemestre[i].tiempo_dias - dias_trancurridos;
+			if (t <= 0) {
+				parcialesSemestre.RemoveAt (i);
+			}else if (t <= 6) {
+				AlertaParcial newAlerta = Instantiate (alertPrefab) as AlertaParcial;
+				newAlerta.transform.SetParent (transform, false);
+
+				Vector3 pos = diasObj [t].transform.position;
+				pos.y = newAlerta.transform.position.y;
+				newAlerta.transform.position = pos;
+
+
+				string cat = GameControl.control.playerData.buscarCategoria(parcialesSemestre[i].materiaName);
+				newAlerta.setAlert (parcialesSemestre[i], GameControl.control.categoriasDic [cat]);
+
+				alertas.Add (newAlerta);
+				parcialesSemestre.RemoveAt (i);
+			} else {
+				break;
+			}
+		}
+
 	}
 
-	public void activar(GameObject apoyo){
-		activo = !activo;
-		apoyo.SetActive (activo);
-	}
+
 }

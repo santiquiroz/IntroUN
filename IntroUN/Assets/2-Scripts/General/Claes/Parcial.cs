@@ -7,11 +7,12 @@ public class Parcial {
 	public float porncentaje;
 	public float nota;
 	public int tiempo_dias;
-	//public string materiaName;
+	public string materiaName;
 
-	public Parcial(float porcentaje, int tiempo_dias){
+	public Parcial(float porcentaje, int tiempo_dias, string materia){
 		this.porncentaje = porcentaje;
 		this.tiempo_dias = tiempo_dias;
 		nota = 0;
+		materiaName = materia;
 	}
 }
