@@ -43,4 +43,9 @@ public class Player {
 		Debug.Log ("Error buscandoMateria");
 		return null;
 	}
+
+	public int numeroParcial(string materia){
+		Materia m = buscarMateria (materia);
+		return m.parciales.Length - m.cantidadParciales + 1;
+	}
 }

@@ -11,7 +11,7 @@ public class TiempoSemestre : MonoBehaviour {
 	[SerializeField]
 	private float tiempo;
 	private float tiempoAnterior;
-	private bool iniciar;
+	private bool pause;
 
 	public int dias;
 	public int semanas;
@@ -25,10 +25,12 @@ public class TiempoSemestre : MonoBehaviour {
 	public List<AlertaParcial> alertas;
 	public GameObject[] diasObj;
 
+	private Parcial parcialEjecutar;
+
 	// Use this for initialization
 	void Start () {
 
-		iniciar = true;
+		pause = false;
 		parcialesSemestre = GameControl.control.LoadTiempoSemestre ();
 		dias = GameControl.control.dataConsistence.dia;
 		semanas = GameControl.control.dataConsistence.semana;
@@ -45,12 +47,12 @@ public class TiempoSemestre : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (iniciar) {
+		if (!pause) {
 			if (tiempo > 0) {
 				tiempo -= Time.deltaTime;	
 
 				if (tiempo <= 0) {
-					iniciar = false;
+					pause = true;
 				} else if (tiempoAnterior - tiempo >= equivalenciaDia) {
 					tiempoAnterior = tiempo;
 					dias--;
@@ -79,14 +81,17 @@ public class TiempoSemestre : MonoBehaviour {
 		foreach (AlertaParcial obj in alertas) {
 			t = obj.parcial.tiempo_dias - dias_trancurridos;
 
-			if (t < 0) {
-				print ("Parcial!!!");
-				//GameControl.control.playerData.buscarMateria ();
-				//Ir a Parcial
-			} else {
+			if (t >= 0){
 				Vector3 pos = diasObj [t].transform.position;
 				pos.y = obj.transform.position.y;
 				obj.transform.position = pos;
+			}
+
+			if (t <= 0) {
+				print ("Parcial!!! " + obj.parcial.materiaName);
+				pause = true;
+				parcialEjecutar = obj.parcial;
+				GameObject.FindGameObjectWithTag ("Canvas").GetComponent<CanvasMannager>().drawAvisoParcial (obj.parcial.materiaName);
 			}
 		}
 
@@ -116,5 +121,17 @@ public class TiempoSemestre : MonoBehaviour {
 
 	}
 
+
+	public void callParcial(){
+		GameObject player = GameObject.FindGameObjectWithTag ("Player");
+		GameObject camara = GameObject.FindGameObjectWithTag ("MainCamera");
+
+		GameControl.control.sceneManager.CampusToInteriores (
+			player.transform.position,
+			camara.transform.position,
+			GameControl.control.playerData.buscarMateria (parcialEjecutar.materiaName),
+			true);
+			
+	}
 
 }

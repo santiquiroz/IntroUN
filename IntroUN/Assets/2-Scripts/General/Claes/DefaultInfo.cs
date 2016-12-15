@@ -61,7 +61,7 @@ public class DefaultInfo {
 		player.materias = new Materia[4];
 
 		player.materias [0] = new Materia ("Calculo", "Fundamentacion", 4, 3);
-		player.materias [0].parciales = new Parcial[3]{ new Parcial(33.3f, 8, "Calculo"), new Parcial(33.3f, 30, "Calculo"), new Parcial(33.3f, 45, "Calculo")};
+		player.materias [0].parciales = new Parcial[3]{ new Parcial(33.3f, 1, "Calculo"), new Parcial(33.3f, 30, "Calculo"), new Parcial(33.3f, 45, "Calculo")};
 
 		player.materias [1] = new Materia ("Fisica", "Disciplinar", 4, 4);
 		player.materias [1].parciales = new Parcial[4]{ new Parcial(30f, 10, "Fisica"), new Parcial(30f, 30, "Fisica"), new Parcial(20f, 45, "Fisica"), new Parcial(20f, 60, "Fisica")};

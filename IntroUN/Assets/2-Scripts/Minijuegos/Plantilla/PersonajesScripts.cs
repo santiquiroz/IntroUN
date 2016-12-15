@@ -217,7 +217,7 @@ public class PersonajesScripts : MonoBehaviour {
 		else
 			txt = "TIEMPO!";
 
-		try{
+		//try{
 			
 
 
@@ -230,17 +230,18 @@ public class PersonajesScripts : MonoBehaviour {
 				float nota = calcularNota (fin);
 				txt += "\nNota: " + nota.ToString ();
 
+
 				int p = GameControl.control.sceneManager.materia.parciales.Length - GameControl.control.sceneManager.materia.cantidadParciales;
 				GameControl.control.sceneManager.materia.parciales[p].nota = nota;
-				GameControl.control.sceneManager.materia.porcentaje += GameControl.control.sceneManager.materia.parciales[p - 1].porncentaje;
-				GameControl.control.sceneManager.materia.nota += nota * GameControl.control.sceneManager.materia.parciales[p - 1].porncentaje / GameControl.control.sceneManager.materia.porcentaje;
+				GameControl.control.sceneManager.materia.porcentaje += GameControl.control.sceneManager.materia.parciales[p].porncentaje;
+				GameControl.control.sceneManager.materia.nota += nota * GameControl.control.sceneManager.materia.parciales[p].porncentaje / GameControl.control.sceneManager.materia.porcentaje;
 				GameControl.control.sceneManager.materia.cantidadParciales--;
 			}else{
 				GameControl.control.sceneManager.materia.cantidadEnemigos--;
 			}
 
 			GameControl.control.playerData.experiencia += ataques;
-
+		/*
 		}catch(System.Exception ex){
 			txt += "?";
 			txt += " + ";
@@ -251,6 +252,7 @@ public class PersonajesScripts : MonoBehaviour {
 				txt += "\nNota: " + nota.ToString ();
 			}
 		}
+		*/
 
 		mensaje.GetComponent<Text>().text = txt;
 	}

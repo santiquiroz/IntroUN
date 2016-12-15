@@ -18,6 +18,8 @@ public class GameControl : MonoBehaviour {
 
 	public static GameControl control;
 
+	public bool reset;
+
 	public SceneManagger sceneManager;
 	public Player playerData;
 	public DataConsistence dataConsistence;
@@ -87,10 +89,7 @@ public class GameControl : MonoBehaviour {
 				GameObject camara = GameObject.FindGameObjectWithTag ("MainCamera");
 				camara.transform.position = dataConsistence.V3PosCamara;
 			}
-
-			GameObject canvas = GameObject.FindGameObjectWithTag ("Canvas");
-			canvas.GetComponent<TiempoSemestre> ().dias = dataConsistence.dia;
-			canvas.GetComponent<TiempoSemestre> ().semanas = dataConsistence.semana;
+				
 		}
 
 		inicio = false;
@@ -118,15 +117,11 @@ public class GameControl : MonoBehaviour {
 
 		GameObject player = GameObject.FindGameObjectWithTag ("Player");
 		GameObject camara = GameObject.FindGameObjectWithTag ("MainCamera");
-		GameObject canvas = GameObject.FindGameObjectWithTag ("Canvas");
 
 		dataConsistence.ultimaEscena = SceneManager.GetActiveScene ().buildIndex;
 		dataConsistence.ultimaEscenaName = SceneManager.GetActiveScene ().name;
 		dataConsistence.FillPosPlayer (player.transform.position);
 		dataConsistence.FillPosCamara (camara.transform.position);
-		dataConsistence.dia = canvas.GetComponent<TiempoSemestre> ().dias;
-		dataConsistence.semana = canvas.GetComponent<TiempoSemestre> ().semanas;
-
 
 		SaveDataConsistence(path + rutaDataConsistence);
 	}
@@ -138,7 +133,7 @@ public class GameControl : MonoBehaviour {
 	*/
 	public void LoadAllData(){
 		
-		if (!File.Exists (path + archivoInstalacion)) {
+		if (!File.Exists (path + archivoInstalacion) || reset) {
 			DefaultInfo dI = new DefaultInfo ();
 			dI.PrimerUso ();
 			dI = null;
