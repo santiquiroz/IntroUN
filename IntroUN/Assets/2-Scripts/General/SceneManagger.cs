@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 
+
 public class SceneManagger {
 
 	//Escenas
@@ -17,11 +18,11 @@ public class SceneManagger {
 
 	//Campus
 	public Vector3 posPlayer_Campus;
-	public Vector3 porCamara_Campus;
+	public Vector3 posCamara_Campus;
 
 	//Interiores
 	public Vector3 posPlayer_Interiores;
-	public Vector3 porCamara_Interiores;
+	public Vector3 posCamara_Interiores;
 	public Materia materia;
 	public Categoria categoria;
 	public bool parcial;
@@ -58,6 +59,10 @@ public class SceneManagger {
 	 * 		parametros:		-scena:	Escena destino del metodo
 	*/
 	private void cargarEscena(string scene){
+
+		DataConsistentGeneral (scene);
+
+
 		try{
 			cambio = true;
 			SceneManager.LoadScene (scene);
@@ -89,9 +94,33 @@ public class SceneManagger {
 
 	//==================================================================================================
 	/*
+	 * Actualiza la Meta-Información del juego
+	*/
+	void DataConsistentGeneral(string scene){
+		GameControl.control.dataConsistence.ultimaEscenaName = scene;
+		GameControl.control.dataConsistence.fromMinigame = fromMinigame;
+		DataConsistentCampus ();
+		DataConsistentInteriores ();
+	}
+
+	void DataConsistentCampus(){
+		GameControl.control.dataConsistence.FillPosPlayerCampus (posPlayer_Campus);
+		GameControl.control.dataConsistence.FillPosCamaraCampus (posCamara_Campus);
+	}
+
+	void DataConsistentInteriores(){
+		GameControl.control.dataConsistence.FillPosPlayerInteriores (posPlayer_Interiores);
+		GameControl.control.dataConsistence.FillPosCamaraInteriores (posCamara_Interiores);
+		GameControl.control.dataConsistence.materia = materia;
+		GameControl.control.dataConsistence.parcial = parcial;
+	}
+
+
+	//==================================================================================================
+	/*
 	 * Campus -> Interiores
 	 * 		parametros:		-posPlayer: Ultima posicion del jugador
-	 * 						-porCamara: Ultima posicion de la camara
+	 * 						-posCamara: Ultima posicion de la camara
 	 * 						-materia: 	Materia en contexto
 	 * 						-par: 		True si es hora del parcial
 	*/
@@ -100,7 +129,7 @@ public class SceneManagger {
 			return;
 
 		posPlayer_Campus = posPlayer;
-		porCamara_Campus = posCamara;
+		posCamara_Campus = posCamara;
 
 		materia = mat;
 		categoria = GameControl.control.categoriasDic [materia.categoria];
@@ -130,7 +159,7 @@ public class SceneManagger {
 	/*
 	 * Interiores -> Minijuegos
 	 * 		parametros:		-posPlayer: Ultima posicion del jugador
-	 * 						-porCamara: Ultima posicion de la camara
+	 * 						-posCamara: Ultima posicion de la camara
 	 * 						-indexEnem:	Indece del enemgio al que accedio
 	 * 						-saludEnem: Salud del enemigo
 	 * 						-time:		Tiempo del minijuego
@@ -142,7 +171,7 @@ public class SceneManagger {
 			return;
 
 		posPlayer_Interiores = posPlayer;
-		porCamara_Interiores = posCamara;
+		posCamara_Interiores = posCamara;
 		indexEnemigo = indexEnem;
 
 		saludEnemigo = saludEnem;
@@ -174,6 +203,7 @@ public class SceneManagger {
 	*/
 	public void MinijuegoToInteriores(){
 		fromMinigame = true;
+
 		cargarEscena (interiores);
 	}
 
@@ -184,6 +214,7 @@ public class SceneManagger {
 	*/
 	public void MinijuegoToCampus(){
 		fromMinigame = true;
+
 		cargarEscena (campus);
 	}
 
@@ -191,14 +222,15 @@ public class SceneManagger {
 	/*
 	 * Campus -> Tienda
 	 * 		parametros:		-posPlayer: Ultima posicion del jugador
-	 * 						-porCamara: Ultima posicion de la camara
+	 * 						-posCamara: Ultima posicion de la camara
 	*/
 	public void CampusToTienda(Vector3 posPlayer, Vector3 posCamara){
 		if (verificarCarga (campus))
 			return;
 	
 		posPlayer_Campus = posPlayer;
-		porCamara_Campus = posCamara;
+		posCamara_Campus = posCamara;
+
 
 		cargarEscena(tienda);
 	}
@@ -211,6 +243,7 @@ public class SceneManagger {
 	public void TiendaToCampus(){
 		if(verificarCarga (tienda))
 			return;
+
 
 		cargarEscena (campus);
 

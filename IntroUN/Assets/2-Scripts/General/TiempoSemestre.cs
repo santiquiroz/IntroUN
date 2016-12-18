@@ -45,7 +45,10 @@ public class TiempoSemestre : MonoBehaviour {
 	}
 
 	
-	// Update is called once per frame
+	//==================================================================================================
+	/*
+	 * Avanza Tiempo de semestre
+	*/
 	void Update () {
 		if (!pause) {
 			if (tiempo > 0) {
@@ -75,7 +78,10 @@ public class TiempoSemestre : MonoBehaviour {
 		}
 	}
 
-
+	//==================================================================================================
+	/*
+	 * Revisa los parciales proximos
+	*/
 	void ajustarTiempo(){
 		int t = 0;
 		foreach (AlertaParcial obj in alertas) {
@@ -88,17 +94,15 @@ public class TiempoSemestre : MonoBehaviour {
 			}
 
 			if (t <= 0) {
-				print ("Parcial!!! " + obj.parcial.materiaName);
-				pause = true;
-				parcialEjecutar = obj.parcial;
-				GameObject.FindGameObjectWithTag ("Canvas").GetComponent<CanvasMannager>().drawAvisoParcial (obj.parcial.materiaName);
+				tiempoDeParcial (obj);
 			}
+
 		}
 
 
 		for (int i = parcialesSemestre.Count - 1; i >= 0; i--){
 			t = parcialesSemestre[i].tiempo_dias - dias_trancurridos;
-			if (t <= 0) {
+			if (t <= 0 && parcialesSemestre [i].estado == EstadosParciales.Realizado) {
 				parcialesSemestre.RemoveAt (i);
 			}else if (t <= 6) {
 				AlertaParcial newAlerta = Instantiate (alertPrefab) as AlertaParcial;
@@ -114,6 +118,10 @@ public class TiempoSemestre : MonoBehaviour {
 
 				alertas.Add (newAlerta);
 				parcialesSemestre.RemoveAt (i);
+
+				if(t == 0)
+					tiempoDeParcial (newAlerta);
+				
 			} else {
 				break;
 			}
@@ -121,7 +129,22 @@ public class TiempoSemestre : MonoBehaviour {
 
 	}
 
+	//==================================================================================================
+	/*
+	 * Ajuste Meta-Información y muesta mensaje
+	*/
+	void tiempoDeParcial(AlertaParcial obj){
+		pause = true;
+		obj.parcial.estado = EstadosParciales.Pendiente;
+		parcialEjecutar = obj.parcial;
+		GameObject.FindGameObjectWithTag ("Canvas").GetComponent<CanvasMannager>().drawAvisoParcial (obj.parcial.materiaName);
+	}
 
+
+	//==================================================================================================
+	/*
+	 * Llama Escena de parcial
+	*/
 	public void callParcial(){
 		GameObject player = GameObject.FindGameObjectWithTag ("Player");
 		GameObject camara = GameObject.FindGameObjectWithTag ("MainCamera");

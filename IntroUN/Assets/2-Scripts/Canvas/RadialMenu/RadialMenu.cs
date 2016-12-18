@@ -23,11 +23,15 @@ public class RadialMenu : MonoBehaviour {
 
 		buttons = new List<RadialButton> ();
 
+		float cons = (2 * Mathf.PI / obj.options.Length);
+
 		for (int i = 0; i < obj.options.Length; i++) {
 			RadialButton newButton = Instantiate (buttonPrefab) as RadialButton;
 			newButton.transform.SetParent (transform, false);
 
-			float theta = (2 * Mathf.PI / obj.options.Length) * i;
+			newButton.id = i;
+
+			float theta = cons * i;
 			float xPos = Mathf.Sin (theta);
 			float yPos = Mathf.Cos (theta);
 
@@ -60,35 +64,53 @@ public class RadialMenu : MonoBehaviour {
 	}
 
 
-	IEnumerator MoveButtons () {
 
-		float t = (2 * Mathf.PI / buttons.Count);
-		for (int i = buttons.Count - 1; i > 0; i--) {
-
-			float theta = t * i - 1;
-			float xPos = Mathf.Sin (theta);
-			float yPos = Mathf.Cos (theta);
-
-			buttons[i].transform.localPosition = new Vector3 (xPos, yPos, 0f) * spaceBetween;
-
-			yield return new WaitForSeconds (timeSpawn);
-		}
-
-		float thet = (2 * Mathf.PI / buttons.Count) * buttons.Count - 1;
-		float xP = Mathf.Sin (thet);
-		float yP = Mathf.Cos (thet);
-
-		buttons[0].transform.localPosition = new Vector3 (xP, yP, 0f) * spaceBetween;
-
-	}
 
 	void Update(){
 		if (Input.GetMouseButtonUp (0)) {
 			if (selected) {
-				Debug.Log (selected.title + " was selected");
-				StartCoroutine (MoveButtons ());
+				MoverBotones();
 			}
 			//Destroy (gameObject);
+		}
+	}
+
+	void MoverBotones(){
+
+		if (selected.id == buttons.Count - 1)
+			return;
+
+
+		int p = 0;
+		int r = 0;
+		bool rigth = true;
+			
+		if (selected.id >= buttons.Count / 2)
+			p = buttons.Count - selected.id - 1;
+		else {
+			p = selected.id + 1;
+			rigth = false;
+		}
+
+
+		float cons = (2 * Mathf.PI / buttons.Count);
+
+		for (int i = buttons.Count - 1; i >= 0; i--) {
+
+			if(rigth){
+				r = buttons [i].id + p;
+				if (r > buttons.Count - 1)
+					r -= buttons.Count;
+				
+			}else{
+				r = buttons [i].id - p;
+				if (r < 0)
+					r = buttons.Count + r;
+			}
+				
+			buttons [i].MoveSelected (r, rigth, buttons.Count, cons, spaceBetween);
+			//buttons[i].transform.localPosition = new Vector3 (xPos, yPos, 0f) * spaceBetween;
+			//buttons [i].id = r;
 		}
 	}
 }

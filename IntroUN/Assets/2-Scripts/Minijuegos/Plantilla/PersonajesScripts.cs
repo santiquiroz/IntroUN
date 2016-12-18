@@ -49,8 +49,8 @@ public class PersonajesScripts : MonoBehaviour {
 	private string tempAnimEnemigo;
 
 	//Sistemas de particulas
-	public ParticleSystem enemigoPS;
-	public ParticleSystem estudiantePS;
+	public CartoonPS enemigoPS;
+	public CartoonPS estudiantePS;
 
 	//==================================================================================================
 	/*
@@ -222,25 +222,26 @@ public class PersonajesScripts : MonoBehaviour {
 
 
 
-			txt += GameControl.control.playerData.experiencia.ToString ();
-			txt += " + ";
-			txt += ataques.ToString ();
+		txt += GameControl.control.playerData.experiencia.ToString ();
+		txt += " + ";
+		txt += ataques.ToString ();
 
-			if (jefe && GameControl.control.sceneManager.materia.cantidadParciales > 0) {
-				float nota = calcularNota (fin);
-				txt += "\nNota: " + nota.ToString ();
+		if (jefe && GameControl.control.sceneManager.materia.cantidadParciales > 0) {
+			float nota = calcularNota (fin);
+			txt += "\nNota: " + nota.ToString ();
 
 
-				int p = GameControl.control.sceneManager.materia.parciales.Length - GameControl.control.sceneManager.materia.cantidadParciales;
-				GameControl.control.sceneManager.materia.parciales[p].nota = nota;
-				GameControl.control.sceneManager.materia.porcentaje += GameControl.control.sceneManager.materia.parciales[p].porncentaje;
-				GameControl.control.sceneManager.materia.nota += nota * GameControl.control.sceneManager.materia.parciales[p].porncentaje / GameControl.control.sceneManager.materia.porcentaje;
-				GameControl.control.sceneManager.materia.cantidadParciales--;
-			}else{
-				GameControl.control.sceneManager.materia.cantidadEnemigos--;
-			}
+			int p = GameControl.control.sceneManager.materia.parciales.Length - GameControl.control.sceneManager.materia.cantidadParciales;
+			GameControl.control.sceneManager.materia.parciales[p].nota = nota;
+			GameControl.control.sceneManager.materia.parciales[p].estado = EstadosParciales.Realizado;
+			GameControl.control.sceneManager.materia.porcentaje += GameControl.control.sceneManager.materia.parciales[p].porncentaje;
+			GameControl.control.sceneManager.materia.nota += nota * GameControl.control.sceneManager.materia.parciales[p].porncentaje / GameControl.control.sceneManager.materia.porcentaje;
+			GameControl.control.sceneManager.materia.cantidadParciales--;
+		}else{
+			GameControl.control.sceneManager.materia.cantidadEnemigos--;
+		}
 
-			GameControl.control.playerData.experiencia += ataques;
+		GameControl.control.playerData.experiencia += ataques;
 		/*
 		}catch(System.Exception ex){
 			txt += "?";

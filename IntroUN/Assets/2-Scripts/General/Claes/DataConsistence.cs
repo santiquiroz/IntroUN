@@ -4,43 +4,107 @@ using System.Collections;
 [System.Serializable]
 public class DataConsistence {
 
+	//SceneManagger
 	public int ultimaEscena;
 	public string ultimaEscenaName;
+	public bool fromMinigame;
 
-	public float ultiPosPlayer_x;
-	public float ultiPosPlayer_y;
-	public float ultiPosPlayer_z;
+	//Player
+	public float[] ultiPosPlayerCampus;
+	public float[] ultiPosPlayerInteriores;
 
-	public float ultiPosCamara_x;
-	public float ultiPosCamara_y;
-	public float ultiPosCamara_z;
+	//Camara
+	public float[] ultiPosCamaraCampus;
+	public float[] ultiPosCamaraInteriores;
 
+	//TiempoSemestre
 	public int dia;
 	public int semana;
 	public int dias_trancurridos;
 
-	public void FillPosPlayer(Vector3 v3){
-		ultiPosPlayer_x = v3.x;
-		ultiPosPlayer_y = v3.y;
-		ultiPosPlayer_z = v3.z;
+	//Interiores
+	public Materia materia;
+	public bool parcial;
+
+	public DataConsistence(){
+		ultiPosPlayerCampus = new float[3];
+		ultiPosCamaraCampus = new float[3];
+		ultiPosPlayerInteriores = new float[3];
+		ultiPosCamaraInteriores = new float[3];
 	}
 
-	public Vector3 V3PosPlayer{ 
+	//==================================================================================================
+	/*
+	 * Get & Set Posision Jugador en Cmapus
+	*/
+	public void FillPosPlayerCampus(Vector3 v3){
+		ultiPosPlayerCampus = new float[3];
+
+		ultiPosPlayerCampus[0] = v3.x;
+		ultiPosPlayerCampus[1] = v3.y;
+		ultiPosPlayerCampus[2] = v3.z;
+	}
+
+	public Vector3 V3PosPlayerCampus{ 
 		get { 
-			return new Vector3(ultiPosPlayer_x, ultiPosPlayer_y, ultiPosPlayer_z); 
+			return new Vector3(ultiPosPlayerCampus[0], ultiPosPlayerCampus[1], ultiPosPlayerCampus[2]); 
 		} 
 	}
 
 
-	public void FillPosCamara(Vector3 v3){
-		ultiPosCamara_x = v3.x;
-		ultiPosCamara_y = v3.y;
-		ultiPosCamara_z = v3.z;
+	//==================================================================================================
+	/*
+	 * Get & Set Posision Camara en Cmapus
+	*/
+	public void FillPosCamaraCampus(Vector3 v3){
+		ultiPosCamaraCampus = new float[3];
+
+		ultiPosCamaraCampus[0] = v3.x;
+		ultiPosCamaraCampus[1] = v3.y;
+		ultiPosCamaraCampus[2] = v3.z;
 	}
 
-	public Vector3 V3PosCamara{ 
+	public Vector3 V3PosCamaraCampus{ 
 		get { 
-			return new Vector3(ultiPosCamara_x, ultiPosCamara_y, ultiPosCamara_z); 
+			return new Vector3(ultiPosCamaraCampus[0], ultiPosCamaraCampus[1], ultiPosCamaraCampus[2]); 
+		} 
+	}
+
+
+	//==================================================================================================
+	/*
+	 * Get & Set Posision Jugador en Interiores
+	*/
+	public void FillPosPlayerInteriores(Vector3 v3){
+		ultiPosPlayerInteriores = new float[3];
+
+		ultiPosPlayerInteriores[0] = v3.x;
+		ultiPosPlayerInteriores[1] = v3.y;
+		ultiPosPlayerInteriores[2] = v3.z;
+	}
+
+	public Vector3 V3PosPlayerInteriores{ 
+		get { 
+			return new Vector3(ultiPosPlayerInteriores[0], ultiPosPlayerInteriores[1], ultiPosPlayerInteriores[2]); 
+		} 
+	}
+
+
+	//==================================================================================================
+	/*
+	 * Get & Set Posision Camara en Cmapus
+	*/
+	public void FillPosCamaraInteriores(Vector3 v3){
+		ultiPosCamaraInteriores = new float[3];
+
+		ultiPosCamaraInteriores[0] = v3.x;
+		ultiPosCamaraInteriores[1] = v3.y;
+		ultiPosCamaraInteriores[2] = v3.z;
+	}
+
+	public Vector3 V3PosCamaraInteriores{ 
+		get { 
+			return new Vector3(ultiPosCamaraInteriores[0], ultiPosCamaraInteriores[1], ultiPosCamaraInteriores[2]); 
 		} 
 	}
 }

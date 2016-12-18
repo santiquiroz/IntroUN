@@ -84,10 +84,10 @@ public class GameControl : MonoBehaviour {
 		if (dataConsistence.ultimaEscena == 0) {
 			if (instalacion) {
 				GameObject player = GameObject.FindGameObjectWithTag ("Player");
-				player.transform.position = dataConsistence.V3PosPlayer;
+				player.transform.position = dataConsistence.V3PosPlayerCampus;
 
 				GameObject camara = GameObject.FindGameObjectWithTag ("MainCamera");
-				camara.transform.position = dataConsistence.V3PosCamara;
+				camara.transform.position = dataConsistence.V3PosCamaraCampus;
 			}
 				
 		}
@@ -120,8 +120,8 @@ public class GameControl : MonoBehaviour {
 
 		dataConsistence.ultimaEscena = SceneManager.GetActiveScene ().buildIndex;
 		dataConsistence.ultimaEscenaName = SceneManager.GetActiveScene ().name;
-		dataConsistence.FillPosPlayer (player.transform.position);
-		dataConsistence.FillPosCamara (camara.transform.position);
+		dataConsistence.FillPosPlayerCampus (player.transform.position);
+		dataConsistence.FillPosCamaraCampus (camara.transform.position);
 
 		SaveDataConsistence(path + rutaDataConsistence);
 	}

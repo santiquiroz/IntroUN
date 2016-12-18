@@ -47,12 +47,12 @@ public class EstudianteMovimiento : MonoBehaviour {
 
 			if (GameControl.control.sceneManager.currentScene == GameControl.control.sceneManager.campusScene) {
 				transform.position = GameControl.control.sceneManager.posPlayer_Campus;
-				camara.transform.position = GameControl.control.sceneManager.porCamara_Campus;
+				camara.transform.position = GameControl.control.sceneManager.posCamara_Campus;
 			}
 			 else if (GameControl.control.sceneManager.currentScene == GameControl.control.sceneManager.interioresScene
 					&& GameControl.control.sceneManager.fromMinigame) {
 				transform.position = GameControl.control.sceneManager.posPlayer_Interiores;
-				camara.transform.position = GameControl.control.sceneManager.porCamara_Interiores;
+				camara.transform.position = GameControl.control.sceneManager.posCamara_Interiores;
 			}
 
 		}

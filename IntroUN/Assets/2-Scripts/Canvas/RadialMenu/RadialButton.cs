@@ -5,12 +5,14 @@ using System.Collections;
 
 public class RadialButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
 
+	public int id;
 
 	public Image circle;
 	public Image icon;
 	public string title;
 	public RadialMenu myMenu;
 	public float speed = 8f;
+	private float timeMove = 0.035f;
 
 	Color defaultColor;
 
@@ -48,25 +50,41 @@ public class RadialButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 	}
 
 	//Move Option
-	/*
-	public void AnimMove(){
-		StartCoroutine (AnimatedMoveButton ());
+
+	public void MoveSelected(int r, bool rigth, int t, float cons, float spaceBetween){
+
+		StartCoroutine( AnimatedMoveSelected( r, rigth, t, cons, spaceBetween));
 	}
 
-	IEnumerator AnimatedMoveButton(float posInit, float posFin){
-		Vector3 pos = transform.position;
-		float timer = 0f;
+	IEnumerator AnimatedMoveSelected(int r, bool rigth, int t, float cons, float spaceBetween){
 
-		while (timer < (1 / speed)) {
-			pos.y += spaceBetween/speed * ( active ? -1 : 1);
-			pos.x += spaceBetween/speed * ( active ? 1 : -1);
+		float temp = id;
 
-			transform.position = pos;
-			timer += Time.deltaTime;
-			yield return null;
+		while (temp != r) {
+			if (rigth) {
+				temp += 0.5f;
+
+				if (temp > t - 1)
+					temp = 0;
+				
+			} else {
+				temp -= 0.5f;
+
+				if(temp < 0)
+					temp = t - 1;
+			}
+
+			float theta = cons * temp;
+			float xPos = Mathf.Sin (theta);
+			float yPos = Mathf.Cos (theta);
+
+			transform.localPosition = new Vector3 (xPos, yPos, 0f) * spaceBetween;
+			yield return new WaitForSeconds (timeMove);
 		}
+
+		id = r;
 	}
-	*/
+
 
 
 

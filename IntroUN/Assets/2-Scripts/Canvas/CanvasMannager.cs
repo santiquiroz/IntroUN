@@ -36,6 +36,9 @@ public class CanvasMannager : MonoBehaviour {
 	public GameObject avisoParcial;
 	public Text textAvisoParcial;
 
+	void Awake(){
+		avisoParcial.SetActive (false);
+	}
 
 	void Start () {
 		panelEstaActivo = false;
@@ -43,8 +46,6 @@ public class CanvasMannager : MonoBehaviour {
 
 		panelEstadisticas.SetActive(panelEstaActivo);
 		panelMaterias.SetActive(panelMateActivo);
-
-		avisoParcial.SetActive (false);
 	}
 	
 
