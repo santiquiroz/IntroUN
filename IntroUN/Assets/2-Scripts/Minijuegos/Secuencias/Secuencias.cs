@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 
 public class Secuencias : MonoBehaviour {
 
-    public PersonajesScripts controladorPersonajes;
+	private MinijuegoGeneral conexionControlador;
     public Transform secuencia;
     public Transform opciones;
     public Sprite[] sprites;
@@ -22,7 +22,8 @@ public class Secuencias : MonoBehaviour {
 
 
 	void Start () {
-    
+		conexionControlador = gameObject.GetComponent<MinijuegoGeneral> ();
+
         StartCoroutine(mostrarSecuencia(0));
         
 	}
@@ -119,8 +120,8 @@ public class Secuencias : MonoBehaviour {
             if (!secuenciaCorrecta[i].Equals(secuenciaElegida[i])) { correcta = false; break; }
         }
 
-        if (correcta) controladorPersonajes.Atacar();
-        else controladorPersonajes.Fallar();
+		if (correcta) conexionControlador.controladorPersonajes.Atacar();
+		else conexionControlador.controladorPersonajes.Fallar();
       
     }
 

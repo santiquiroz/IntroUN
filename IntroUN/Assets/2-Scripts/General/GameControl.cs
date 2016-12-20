@@ -27,6 +27,9 @@ public class GameControl : MonoBehaviour {
 	public Categoria[] categorias;
 	public Dictionary<string, Categoria> categoriasDic = new Dictionary<string, Categoria>();
 
+
+	public Semestres semestresData;
+
 	//Rutas
 	public string path;
 	private const string archivoInstalacion = "IntroUNGame.dat";

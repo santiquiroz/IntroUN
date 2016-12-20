@@ -10,7 +10,7 @@ using UnityEngine.EventSystems;
 public class ArmarPalabras : MonoBehaviour {
 
 
-    public PersonajesScripts controladorPersonajes;
+	private MinijuegoGeneral conexionControlador;
     public TextAsset archivoPalabras;
     public Text palabraIngresada;
     public Transform iconoCargar;
@@ -26,6 +26,9 @@ public class ArmarPalabras : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+
+		conexionControlador = gameObject.GetComponent<MinijuegoGeneral> ();
+
         esperar = false;
         palabras = new Dictionary<string,int>();
         palabrasIngresadas = new Dictionary<string, int>();
@@ -68,13 +71,14 @@ public class ArmarPalabras : MonoBehaviour {
 
         else if (palabras.ContainsKey(palabra))
         {
-            controladorPersonajes.Atacar();
+			
+			conexionControlador.controladorPersonajes.Atacar();
             palabrasIngresadas[palabra] = 1;
             palabraIngresada.text = "";
         }
         else
         {
-            controladorPersonajes.Fallar();
+			conexionControlador.controladorPersonajes.Fallar();
             palabraIngresada.text = "";
         }
         

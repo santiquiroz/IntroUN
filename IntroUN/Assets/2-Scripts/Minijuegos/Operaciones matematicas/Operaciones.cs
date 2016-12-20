@@ -4,12 +4,14 @@ using UnityEngine.UI;
 
 public class Operaciones : MonoBehaviour {
 
-    public PersonajesScripts controladorPersonajes;
+	private MinijuegoGeneral conexionControlador;
     public int tipo1, tipo2, tipo3, min, max;
     public Text ladoIzq, ladoDer;
     private int op = 0;
 	// Use this for initialization
 	void Start () {
+		conexionControlador = gameObject.GetComponent<MinijuegoGeneral> ();
+
         generarOperacion();
 	}
 	
@@ -17,6 +19,7 @@ public class Operaciones : MonoBehaviour {
 	void Update () {
 	
 	}
+
 
     void generarOperacion()
     {
@@ -99,8 +102,9 @@ public class Operaciones : MonoBehaviour {
     }
     public void verificarOperador(int o)
     {
-        if (o == op) controladorPersonajes.Atacar();
-        else controladorPersonajes.Fallar();
+		
+		if (o == op) conexionControlador.controladorPersonajes.Atacar();
+		else conexionControlador.controladorPersonajes.Fallar();
 
         generarOperacion();
     }

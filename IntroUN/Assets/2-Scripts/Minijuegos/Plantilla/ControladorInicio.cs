@@ -39,6 +39,7 @@ public class ControladorInicio : MonoBehaviour {
 
 		if (jefe) {
 			indexMinijuego = 0;
+			minijuegos = GameControl.control.sceneManager.categoria.minijuegosPrefabs;
 			instanciarMinijuego ();
 		}
 
@@ -167,11 +168,14 @@ public class ControladorInicio : MonoBehaviour {
 		tempRect.transform.localScale = minijuegos[indexMinijuego].transform.localScale;
 		tempRect.transform.localRotation = minijuegos[indexMinijuego].transform.localRotation;
 
+		minijuego.GetComponent<MinijuegoGeneral>().controladorPersonajes = gameObject.GetComponent<PersonajesScripts> ();
 
+		/*
 		if (indexMinijuego == 0)
 			minijuego.GetComponent<GeneradorOperaciones> ().controladorPersonajes = gameObject.GetComponent<PersonajesScripts> ();
 		else if (indexMinijuego == 1)
 			minijuego.GetComponent<CanvasJuegoScript> ().controladorPersonajes = gameObject.GetComponent<PersonajesScripts> ();	
+		*/
 
 		gameObject.GetComponent<PersonajesScripts> ().minijuego = minijuego;
 		
