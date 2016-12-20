@@ -4,8 +4,9 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class RadialMenu : MonoBehaviour {
-		
-	public Text label;
+
+    public CanvasMannager canvas;
+    public Text label;
 	public RadialButton buttonPrefab;
 	public RadialButton selected;
 
@@ -70,10 +71,32 @@ public class RadialMenu : MonoBehaviour {
 		if (Input.GetMouseButtonUp (0)) {
 			if (selected) {
 				MoverBotones();
+                mostrarPanel(selected);
 			}
 			//Destroy (gameObject);
 		}
 	}
+
+    private void mostrarPanel(RadialButton selected)
+    {
+        switch (selected.id)
+        {
+            case 0:
+                canvas.mostrarPanelMaterias();
+                break;
+            case 1:
+                canvas.mostrarPanelInfoEstudiante();
+                break;
+            case 2:
+                canvas.mostrarPanelItems();
+                break;
+            case 3:
+                canvas.mostrarPanelSalud();
+                break;
+            default:
+                break;
+        }
+    }
 
 	void MoverBotones(){
 

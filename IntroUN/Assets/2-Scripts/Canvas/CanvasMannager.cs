@@ -1,35 +1,37 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using UnityEngine.EventSystems;
 
 public class CanvasMannager : MonoBehaviour {
 
 	//Seccion - Materias
 	private bool panelMateActivo;
 	public GameObject panelMaterias;
-
-	public Text textMateria1;
+    public GameObject panelParciales;
+	/*public Text textMateria1;
 	public Text textMateria1Nota;
 	public Text textMateria2;
 	public Text textMateria2Nota;
 	public Text textMateria3;
 	public Text textMateria3Nota;
+     */
 
 	//Seccion - Info Estudiante
-	public Text textNivel;
-	public Text textExperiencia;
+    public GameObject panelInfoEstudiante;
 
-	//Seccion - Carrear
-	public Text textPapa;
+	//Seccion - Carrera
 
 	//Seccion - Estado Fisico & Psicologico
 	private bool panelEstaActivo;
-	public GameObject panelEstadisticas;
 
+    public GameObject panelSalud;
 	public Image energiaContent;
 	public Image estresContent;
 
 	//Seccion - Opciones
+
+    public GameObject panelItems;
 
 
 	//Aviso Parcial
@@ -44,8 +46,11 @@ public class CanvasMannager : MonoBehaviour {
 		panelEstaActivo = false;
 		panelMateActivo = false;
 
-		panelEstadisticas.SetActive(panelEstaActivo);
+		panelInfoEstudiante.SetActive(panelEstaActivo);
 		panelMaterias.SetActive(panelMateActivo);
+
+        //mostrarPanelInfoEstudiante();////////////////
+        //mostrarPanelMaterias();/////////////////////
 	}
 	
 
@@ -62,7 +67,7 @@ public class CanvasMannager : MonoBehaviour {
 			setPanelMaterias ();
 
 		panelEstaActivo = !panelEstaActivo;
-		panelEstadisticas.SetActive(panelEstaActivo);
+		panelInfoEstudiante.SetActive(panelEstaActivo);
 	}
 
 	//==================================================================================================
@@ -113,8 +118,8 @@ public class CanvasMannager : MonoBehaviour {
 	*/
 	void drawSeccionCarrera(){
 
-		textExperiencia.text = GameControl.control.playerData.experiencia.ToString ();
-		textPapa.text = GameControl.control.playerData.papa.ToString ();
+		//textExperiencia.text = GameControl.control.playerData.experiencia.ToString ();
+		//textPapa.text = GameControl.control.playerData.papa.ToString ();
 	}
 
 	//==================================================================================================
@@ -174,4 +179,80 @@ public class CanvasMannager : MonoBehaviour {
 	{
 		return (value - inMin) * (outMax - outMin) / (inMax - inMin) + outMin;
 	}
+
+    //========================= Agregado por Eli a partir de aqui ==================================
+
+
+    public void mostrarPanelMaterias()
+    {
+        panelMaterias.SetActive(true);
+        Materia[] materias = GameControl.control.playerData.materias;
+        int i = 0;
+        Transform seccion;
+        foreach(Materia materia in materias){
+            seccion = panelMaterias.transform.GetChild(i);
+            i++;
+            seccion.GetChild(0).GetComponent<Text>().text = materia.name;
+            seccion.GetChild(1).GetComponent<Text>().text = materia.nota.ToString();
+            seccion.gameObject.SetActive(true);
+        }
+        
+    }
+public void verNotas()
+    {
+        GameObject materia = EventSystem.current.currentSelectedGameObject;        
+        Materia materiaElegida = obtenerMateria(materia.transform.GetChild(0).GetComponent<Text>().text);
+        Parcial[] parciales = materiaElegida.parciales;
+        panelMaterias.SetActive(false);
+        panelParciales.SetActive(true);
+        panelParciales.transform.GetChild(0).GetChild(0).GetComponent<Text>().text = materiaElegida.name;
+        panelParciales.transform.GetChild(0).GetChild(1).GetComponent<Text>().text = materiaElegida.nota.ToString();
+        int i = 1;
+        Transform seccion;
+        foreach(Parcial parcial in parciales){
+            seccion = panelParciales.transform.GetChild(i);
+            seccion.GetChild(1).GetComponent<Text>().text = parcial.nota.ToString();
+            seccion.gameObject.SetActive(true);
+            i++;
+        }
+
+    }
+
+private Materia obtenerMateria(string n)
+{
+    Materia[] materias = GameControl.control.playerData.materias;
+    foreach (Materia m in materias) if (m.name.Equals(n)) return m;
+    return materias[0];
+
+}
+
+public void panelParcialesToPanelMaterias()
+{
+    panelParciales.SetActive(false);
+    panelMaterias.SetActive(true);
+}
+
+
+public void mostrarPanelInfoEstudiante()
+{
+    panelInfoEstudiante.transform.GetChild(1).GetComponent<Text>().text = GameControl.control.playerData.nivel.ToString();
+    panelInfoEstudiante.transform.GetChild(3).GetComponent<Text>().text = GameControl.control.playerData.experiencia.ToString();
+    panelInfoEstudiante.transform.GetChild(3).GetComponent<Text>().text = GameControl.control.playerData.papa.ToString();
+    panelInfoEstudiante.SetActive(true);
+}
+
+public void mostrarPanelSalud()
+{
+    panelSalud.SetActive(true);
+}
+
+public void mostrarPanelItems()
+{
+    panelItems.SetActive(true);
+}
+
+public void cerrarPanel()
+{
+    EventSystem.current.currentSelectedGameObject.transform.parent.gameObject.SetActive(false);
+}
 }
