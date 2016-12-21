@@ -22,7 +22,7 @@ public class SpanwEnemigos : MonoBehaviour {
 		totalenemigos = GameControl.control.sceneManager.materia.cantidadEnemigos;
 
 		if (GameControl.control.sceneManager.parcial) {
-			Instantiate (jefe, jefePos.transform.position, Quaternion.identity);
+			Instantiate (jefe, jefePos.transform.position, Quaternion.Euler(new Vector3(0,-140,0)));
 		} else {
 
 			enemgoToInstantiate = GameControl.control.sceneManager.categoria.basciEnemy;
@@ -38,7 +38,7 @@ public class SpanwEnemigos : MonoBehaviour {
 	void crearEnemigos(){
 		for (int i = 0; i < totalenemigos; i++) {
 			int pos = Random.Range(0, (puntos.Count- 1));
-			GameObject temp = (GameObject) Instantiate (enemgoToInstantiate, puntos[pos].transform.position, Quaternion.identity);
+			GameObject temp = (GameObject) Instantiate (enemgoToInstantiate, puntos[pos].transform.position, Quaternion.Euler(new Vector3(0,Random.Range(0,360),0)));
 			puntos.RemoveAt (pos);
 			temp.GetComponent<EnemigoIndex> ().index = pos;
 		}

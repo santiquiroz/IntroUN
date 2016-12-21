@@ -157,4 +157,25 @@ public class TiempoSemestre : MonoBehaviour {
 			
 	}
 
+	public void automaticEstu(){
+		Vector3 punto = buscarEdificio ();
+		if (punto != Vector3.zero) {
+			GameObject.FindGameObjectWithTag ("Canvas").GetComponent<CanvasMannager> ().drawAvisoParcial ();
+			GameObject.FindWithTag ("Player").GetComponent<EstudianteParcialAuto> ().Mover (punto);
+		} else
+			Debug.Log ("Error en AutomaticEstu");
+	}
+
+	//==================================================================================================
+	/*
+	 * Llama Escena de parcial
+	*/
+	Vector3 buscarEdificio(){
+		foreach (EdificioControl edificio in GameControl.control.semestresData.edificios) {
+			if (GameControl.control.playerData.materias [edificio.materia].name == parcialEjecutar.materiaName)
+				return edificio.gameObject.transform.GetChild (0).transform.position;
+		}
+		return Vector3.zero;
+	}
+
 }

@@ -37,9 +37,11 @@ public class CanvasMannager : MonoBehaviour {
 	//Aviso Parcial
 	public GameObject avisoParcial;
 	public Text textAvisoParcial;
+	bool activeAvisoParcial;
 
 	void Awake(){
-		avisoParcial.SetActive (false);
+		activeAvisoParcial = false;
+		avisoParcial.SetActive (activeAvisoParcial);
 	}
 
 	void Start () {
@@ -155,13 +157,20 @@ public class CanvasMannager : MonoBehaviour {
 	 * Metodo para mostrar el Aviso del parcial que debe realizar
 	*/
 	public void drawAvisoParcial(string materia){
-		avisoParcial.SetActive (true);
-		textAvisoParcial.text = "Es momento de realizar el parcial #";
-		textAvisoParcial.text += GameControl.control.playerData.numeroParcial (materia);
-		textAvisoParcial.text += " de ";
-		textAvisoParcial.text += materia;
+		if (!activeAvisoParcial) {
+			textAvisoParcial.text = "Es momento de realizar el parcial #";
+			textAvisoParcial.text += GameControl.control.playerData.numeroParcial (materia);
+			textAvisoParcial.text += " de ";
+			textAvisoParcial.text += materia;
+		}
+		activeAvisoParcial = !activeAvisoParcial;
+		avisoParcial.SetActive (activeAvisoParcial);
 	}
 
+	public void drawAvisoParcial(){
+		activeAvisoParcial = !activeAvisoParcial;
+		avisoParcial.SetActive (activeAvisoParcial);
+	}
 
 
 	//==================================================================================================

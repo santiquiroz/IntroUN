@@ -228,7 +228,7 @@ public class PersonajesScripts : MonoBehaviour {
 
 		if (jefe && GameControl.control.sceneManager.materia.cantidadParciales > 0) {
 			float nota = calcularNota (fin);
-			txt += "\nNota: " + nota.ToString ();
+			txt += "\nNota: (";
 
 
 			int p = GameControl.control.sceneManager.materia.parciales.Length - GameControl.control.sceneManager.materia.cantidadParciales;
@@ -237,6 +237,24 @@ public class PersonajesScripts : MonoBehaviour {
 			GameControl.control.sceneManager.materia.porcentaje += GameControl.control.sceneManager.materia.parciales[p].porncentaje;
 			GameControl.control.sceneManager.materia.nota += nota * GameControl.control.sceneManager.materia.parciales[p].porncentaje / GameControl.control.sceneManager.materia.porcentaje;
 			GameControl.control.sceneManager.materia.cantidadParciales--;
+
+			string divisor = "";
+			for (int i = 0; i <= p; i++) {
+				txt += GameControl.control.sceneManager.materia.parciales [p].nota;
+				txt += "*";
+				txt += GameControl.control.sceneManager.materia.parciales [p].porncentaje;
+
+				divisor += GameControl.control.sceneManager.materia.parciales [p].porncentaje;
+
+				if (i < p) {
+					txt += " + ";
+					divisor += " + ";
+				}
+			}
+
+			txt += ")/(" + divisor + ") = ";
+			txt += nota.ToString ();
+
 		}else{
 			GameControl.control.sceneManager.materia.cantidadEnemigos--;
 		}

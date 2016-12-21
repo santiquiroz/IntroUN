@@ -1,104 +1,76 @@
 fileFormatVersion: 2
-guid: 11ef8d532c881864792c8ae826a7a922
-timeCreated: 1482196300
+guid: 4ac4c61e5a107c24095361ce02b8f5a6
+timeCreated: 1482277024
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
     100000: Armature
     100002: knight
-    100004: Rig
-    100006: RigHead
-    100008: RigHead_end
-    100010: RigHeadGizmo
-    100012: RigLArm1
-    100014: RigLArm1Gizmo
-    100016: RigLArm2
-    100018: RigLArm2Gizmo
-    100020: RigLArmPalm
-    100022: RigLArmPalm_end
-    100024: RigLArmPalmGizmo
-    100026: RigLLeg1
-    100028: RigLLeg2
-    100030: RigLLegAnkle
-    100032: RigLLegFoot1
-    100034: RigLLegFoot1_end
-    100036: RigNeck
-    100038: RigPelvis
-    100040: RigPelvisGizmo
-    100042: RigRArm1
-    100044: RigRArm1Gizmo
-    100046: RigRArm2
-    100048: RigRArm2Gizmo
-    100050: RigRArmPalm
-    100052: RigRArmPalm_end
-    100054: RigRArmPalmGizmo
-    100056: RigRibcage
-    100058: RigRibcageGizmo
-    100060: RigRLeg1
-    100062: RigRLeg2
-    100064: RigRLegAnkle
-    100066: RigRLegFoot1
-    100068: RigRLegFoot1_end
-    100070: RigSpine1
-    100072: RigSpine2
-    100074: RigTail1
-    100076: RigTail1Gizmo
-    100078: RigTail2
-    100080: RigTail2Gizmo
-    100082: RigTail3
-    100084: RigTail3Gizmo
-    100086: RigTail4
-    100088: RigTail4_end
-    100090: RigTail4Gizmo
-    100092: //RootNode
+    100004: RigHead
+    100006: RigHead_end
+    100008: RigLArm1
+    100010: RigLArm2
+    100012: RigLArmPalm
+    100014: RigLArmPalm_end
+    100016: RigLLeg1
+    100018: RigLLeg2
+    100020: RigLLegAnkle
+    100022: RigLLegFoot1
+    100024: RigLLegFoot1_end
+    100026: RigNeck
+    100028: RigPelvis
+    100030: RigRArm1
+    100032: RigRArm2
+    100034: RigRArmPalm
+    100036: RigRArmPalm_end
+    100038: RigRibcage
+    100040: RigRLeg1
+    100042: RigRLeg2
+    100044: RigRLegAnkle
+    100046: RigRLegFoot1
+    100048: RigRLegFoot1_end
+    100050: RigSpine1
+    100052: RigSpine2
+    100054: RigTail1
+    100056: RigTail2
+    100058: RigTail3
+    100060: RigTail4
+    100062: RigTail4_end
+    100064: //RootNode
     400000: Armature
     400002: knight
-    400004: Rig
-    400006: RigHead
-    400008: RigHead_end
-    400010: RigHeadGizmo
-    400012: RigLArm1
-    400014: RigLArm1Gizmo
-    400016: RigLArm2
-    400018: RigLArm2Gizmo
-    400020: RigLArmPalm
-    400022: RigLArmPalm_end
-    400024: RigLArmPalmGizmo
-    400026: RigLLeg1
-    400028: RigLLeg2
-    400030: RigLLegAnkle
-    400032: RigLLegFoot1
-    400034: RigLLegFoot1_end
-    400036: RigNeck
-    400038: RigPelvis
-    400040: RigPelvisGizmo
-    400042: RigRArm1
-    400044: RigRArm1Gizmo
-    400046: RigRArm2
-    400048: RigRArm2Gizmo
-    400050: RigRArmPalm
-    400052: RigRArmPalm_end
-    400054: RigRArmPalmGizmo
-    400056: RigRibcage
-    400058: RigRibcageGizmo
-    400060: RigRLeg1
-    400062: RigRLeg2
-    400064: RigRLegAnkle
-    400066: RigRLegFoot1
-    400068: RigRLegFoot1_end
-    400070: RigSpine1
-    400072: RigSpine2
-    400074: RigTail1
-    400076: RigTail1Gizmo
-    400078: RigTail2
-    400080: RigTail2Gizmo
-    400082: RigTail3
-    400084: RigTail3Gizmo
-    400086: RigTail4
-    400088: RigTail4_end
-    400090: RigTail4Gizmo
-    400092: //RootNode
+    400004: RigHead
+    400006: RigHead_end
+    400008: RigLArm1
+    400010: RigLArm2
+    400012: RigLArmPalm
+    400014: RigLArmPalm_end
+    400016: RigLLeg1
+    400018: RigLLeg2
+    400020: RigLLegAnkle
+    400022: RigLLegFoot1
+    400024: RigLLegFoot1_end
+    400026: RigNeck
+    400028: RigPelvis
+    400030: RigRArm1
+    400032: RigRArm2
+    400034: RigRArmPalm
+    400036: RigRArmPalm_end
+    400038: RigRibcage
+    400040: RigRLeg1
+    400042: RigRLeg2
+    400044: RigRLegAnkle
+    400046: RigRLegFoot1
+    400048: RigRLegFoot1_end
+    400050: RigSpine1
+    400052: RigSpine2
+    400054: RigTail1
+    400056: RigTail2
+    400058: RigTail3
+    400060: RigTail4
+    400062: RigTail4_end
+    400064: //RootNode
     4300000: knight
     9500000: //RootNode
     13700000: knight

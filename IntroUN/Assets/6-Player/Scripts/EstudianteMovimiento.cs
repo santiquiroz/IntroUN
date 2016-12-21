@@ -63,7 +63,6 @@ public class EstudianteMovimiento : MonoBehaviour {
 
 	void Update () {
 
-		//print (GameControl.control.ultimaPosicion);
 		//Detección del Touch
 		if (Input.touchCount > 0) {
 

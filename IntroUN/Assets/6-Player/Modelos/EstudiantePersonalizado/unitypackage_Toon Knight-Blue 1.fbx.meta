@@ -1,0 +1,168 @@
+fileFormatVersion: 2
+guid: f83370d7ad245354683a2291aacd7efe
+timeCreated: 1482277118
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Armature
+    100002: knight
+    100004: Rig
+    100006: RigHead
+    100008: RigHead_end
+    100010: RigHeadGizmo
+    100012: RigLArm1
+    100014: RigLArm1Gizmo
+    100016: RigLArm2
+    100018: RigLArm2Gizmo
+    100020: RigLArmPalm
+    100022: RigLArmPalm_end
+    100024: RigLArmPalmGizmo
+    100026: RigLLeg1
+    100028: RigLLeg2
+    100030: RigLLegAnkle
+    100032: RigLLegFoot1
+    100034: RigLLegFoot1_end
+    100036: RigNeck
+    100038: RigPelvis
+    100040: RigPelvisGizmo
+    100042: RigRArm1
+    100044: RigRArm1Gizmo
+    100046: RigRArm2
+    100048: RigRArm2Gizmo
+    100050: RigRArmPalm
+    100052: RigRArmPalm_end
+    100054: RigRArmPalmGizmo
+    100056: RigRibcage
+    100058: RigRibcageGizmo
+    100060: RigRLeg1
+    100062: RigRLeg2
+    100064: RigRLegAnkle
+    100066: RigRLegFoot1
+    100068: RigRLegFoot1_end
+    100070: RigSpine1
+    100072: RigSpine2
+    100074: RigTail1
+    100076: RigTail1Gizmo
+    100078: RigTail2
+    100080: RigTail2Gizmo
+    100082: RigTail3
+    100084: RigTail3Gizmo
+    100086: RigTail4
+    100088: RigTail4_end
+    100090: RigTail4Gizmo
+    100092: //RootNode
+    400000: Armature
+    400002: knight
+    400004: Rig
+    400006: RigHead
+    400008: RigHead_end
+    400010: RigHeadGizmo
+    400012: RigLArm1
+    400014: RigLArm1Gizmo
+    400016: RigLArm2
+    400018: RigLArm2Gizmo
+    400020: RigLArmPalm
+    400022: RigLArmPalm_end
+    400024: RigLArmPalmGizmo
+    400026: RigLLeg1
+    400028: RigLLeg2
+    400030: RigLLegAnkle
+    400032: RigLLegFoot1
+    400034: RigLLegFoot1_end
+    400036: RigNeck
+    400038: RigPelvis
+    400040: RigPelvisGizmo
+    400042: RigRArm1
+    400044: RigRArm1Gizmo
+    400046: RigRArm2
+    400048: RigRArm2Gizmo
+    400050: RigRArmPalm
+    400052: RigRArmPalm_end
+    400054: RigRArmPalmGizmo
+    400056: RigRibcage
+    400058: RigRibcageGizmo
+    400060: RigRLeg1
+    400062: RigRLeg2
+    400064: RigRLegAnkle
+    400066: RigRLegFoot1
+    400068: RigRLegFoot1_end
+    400070: RigSpine1
+    400072: RigSpine2
+    400074: RigTail1
+    400076: RigTail1Gizmo
+    400078: RigTail2
+    400080: RigTail2Gizmo
+    400082: RigTail3
+    400084: RigTail3Gizmo
+    400086: RigTail4
+    400088: RigTail4_end
+    400090: RigTail4Gizmo
+    400092: //RootNode
+    4300000: knight
+    9500000: //RootNode
+    13700000: knight
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
