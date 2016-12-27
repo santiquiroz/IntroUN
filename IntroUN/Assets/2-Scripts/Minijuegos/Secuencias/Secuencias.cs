@@ -16,6 +16,10 @@ public class Secuencias : MonoBehaviour {
     private int indice; //Indice aleatorio del sprite que se va a mostrar
     private int imagenActual =0;
     private List<Sprite> secuenciaCorrecta = new List<Sprite>(), secuenciaElegida = new List<Sprite>();
+    public int cuantas2, cuantas3, cuantas4, cuantas5;
+
+
+
      
 
 
@@ -24,7 +28,11 @@ public class Secuencias : MonoBehaviour {
 	void Start () {
 		conexionControlador = gameObject.GetComponent<MinijuegoGeneral> ();
 
-        StartCoroutine(mostrarSecuencia(0));
+        if (cuantas2 > 0) { StartCoroutine(mostrarSecuencia(0, 2)); cuantas2--; }
+        else if (cuantas3 > 0) { StartCoroutine(mostrarSecuencia(0, 3)); cuantas3--; }
+        else if (cuantas4 > 0) { StartCoroutine(mostrarSecuencia(0, 4)); cuantas4--; }
+        else if (cuantas5 > 0) { StartCoroutine(mostrarSecuencia(0, 5)); cuantas5--; }
+        else StartCoroutine(mostrarSecuencia(0, 5));
         
 	}
 	
@@ -33,17 +41,17 @@ public class Secuencias : MonoBehaviour {
 
         if (secuenciaElegida.Count > 0 && secuenciaElegida.Count == secuenciaCorrecta.Count)
         {
+            
             verificarSecuencia();
             reiniciar();
         }
 	}
 
-    
 
     
-    IEnumerator mostrarSecuencia(int itemActual)
+    IEnumerator mostrarSecuencia(int itemActual, int cuantas)
     {
-        if (itemActual < secuencia.transform.childCount)
+        if (itemActual < cuantas)
         {
             indice = Random.Range(0, sprites.Length-1);
             child = secuencia.GetChild(itemActual);
@@ -53,7 +61,7 @@ public class Secuencias : MonoBehaviour {
             child.transform.gameObject.SetActive(true);
             yield return new WaitForSeconds(1.2f);
             itemActual++;
-            StartCoroutine(mostrarSecuencia(itemActual));
+            StartCoroutine(mostrarSecuencia(itemActual, cuantas));
         }
 
         else

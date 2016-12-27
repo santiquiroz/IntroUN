@@ -8,6 +8,8 @@ public class Operaciones : MonoBehaviour {
     public int tipo1, tipo2, tipo3, min, max;
     public Text ladoIzq, ladoDer;
     private int op = 0;
+    public GameObject opciones;
+    public GameObject iconoEsperar;
 	// Use this for initialization
 	void Start () {
 		conexionControlador = gameObject.GetComponent<MinijuegoGeneral> ();
@@ -17,7 +19,7 @@ public class Operaciones : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+        if (iconoEsperar.activeSelf) iconoEsperar.transform.Rotate(-Vector3.forward * Time.deltaTime * 350);
 	}
 
 
@@ -25,7 +27,8 @@ public class Operaciones : MonoBehaviour {
     {
         if (tipo1 > 0) generarTipo1();
         else if (tipo2 > 0) generarTipo2();
-        else if (tipo3 > 0 ) generarTipo3();
+        else if (tipo3 > 0) generarTipo3();
+        else generarTipo3();
     }
 
     void generarTipo1()
@@ -102,10 +105,22 @@ public class Operaciones : MonoBehaviour {
     }
     public void verificarOperador(int o)
     {
-		
-		if (o == op) conexionControlador.controladorPersonajes.Atacar();
-		else conexionControlador.controladorPersonajes.Fallar();
+
+        if (o == op) conexionControlador.controladorPersonajes.Atacar();
+        else {
+            conexionControlador.controladorPersonajes.Fallar();
+            StartCoroutine(desactivarOpciones());
+        }
 
         generarOperacion();
+    }
+
+    private IEnumerator desactivarOpciones()
+    {
+        opciones.SetActive(false);
+        iconoEsperar.SetActive(true);
+        yield return new WaitForSeconds(1);
+        iconoEsperar.SetActive(false);
+        opciones.SetActive(true);
     }
 }
